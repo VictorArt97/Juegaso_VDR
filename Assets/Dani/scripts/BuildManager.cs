@@ -13,17 +13,19 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject prefabEstandarCapsula;
+    public GameObject prefabEstandarCaballero;
 
-    private void Start()
+   public GameObject prefabCaballero;
+
+    private GameObject caballerocolocar;
+
+    public GameObject caballerocolocado ()
     {
-        capsulacolocar = prefabEstandarCapsula;
+        return caballerocolocar ;
     }
 
-    private GameObject capsulacolocar;
-
-    public GameObject capsulacolocada ()
+    public void setCaballeroToBuild(GameObject caballero)
     {
-        return capsulacolocar ;
+        caballerocolocar = caballero;
     }
 }
