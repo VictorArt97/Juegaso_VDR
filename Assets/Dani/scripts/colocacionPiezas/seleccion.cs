@@ -10,7 +10,7 @@ public class seleccion : MonoBehaviour
 
 
 
-    private GameObject caballero;
+    private GameObject pieza;
     private void Start()
     {
         rend = GetComponent<Renderer>();
@@ -20,7 +20,7 @@ public class seleccion : MonoBehaviour
     private void OnMouseEnter()
     {
         rend.material.color = hovercolor;
-        if (buildManager.caballerocolocado() == null)
+        if (buildManager.getPiezaToBuild() == null)
          return;
         
     }
@@ -32,17 +32,17 @@ public class seleccion : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (buildManager.caballerocolocado()== null)
+        if (buildManager.getPiezaToBuild()== null)
          return;
        
-        if (caballero != null)
+        if (pieza != null)
         {
             Debug.Log("No puedes poner esto aqui");
             return;
         }
        
-        GameObject capsulacolocar = buildManager.caballerocolocado();
+        GameObject piezaColocar = buildManager.getPiezaToBuild();
         
-        caballero = (GameObject)Instantiate(capsulacolocar, transform.position, transform.rotation);
+        pieza = (GameObject)Instantiate(piezaColocar, transform.position, transform.rotation);
     }
 }

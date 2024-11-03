@@ -14,18 +14,17 @@ public class BuildManager : MonoBehaviour
     }
 
     public GameObject prefabEstandarCaballero;
+    public GameObject prefabEstandarPeon;
 
-   public GameObject prefabCaballero;
+    private GameObject piezaColocar;
 
-    private GameObject caballerocolocar;
-
-    public GameObject caballerocolocado ()
+    public GameObject getPiezaToBuild ()
     {
-        return caballerocolocar ;
+        return piezaColocar ;
     }
 
-    public void setCaballeroToBuild(GameObject caballero)
+    public void setPiezaToBuild(GameObject caballero)
     {
-        caballerocolocar = caballero;
+        piezaColocar = caballero;
     }
 }

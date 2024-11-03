@@ -6,12 +6,12 @@ public class tienda : MonoBehaviour
   public void comprarCaballero()
     {
         Debug.Log("Caballero comprado");
-        buildManager.setCaballeroToBuild(buildManager.prefabEstandarCaballero);
+        buildManager.setPiezaToBuild(buildManager.prefabEstandarCaballero);
     }
-    public void comprarOtroCaballero()
+    public void comprarPeon()
     {
-        Debug.Log("Otro caballero comprado");
-       
+        Debug.Log("peon comprado");
+       buildManager.setPiezaToBuild(buildManager.prefabEstandarPeon)
     }
     BuildManager buildManager;
 
