@@ -28,6 +28,7 @@ public class seleccion : MonoBehaviour
     private void OnMouseExit()
     {
         rend.material.color = colorInicial ;
+
     }
 
     private void OnMouseDown()

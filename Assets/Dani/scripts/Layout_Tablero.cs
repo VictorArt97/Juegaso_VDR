@@ -24,6 +24,7 @@ public class Layout_Tablero : MonoBehaviour
         {
             Debug.LogError("Index fuera de limites");
             return new Vector2Int(-1, -1);
+
         }
         return new Vector2Int(cuadrantesTablero [index].posicion.x -1, cuadrantesTablero[index].posicion.y -1);
     }

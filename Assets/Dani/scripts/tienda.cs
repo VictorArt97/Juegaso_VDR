@@ -11,12 +11,13 @@ public class tienda : MonoBehaviour
     public void comprarPeon()
     {
         Debug.Log("peon comprado");
-       buildManager.setPiezaToBuild(buildManager.prefabEstandarPeon)
+        buildManager.setPiezaToBuild(buildManager.prefabEstandarPeon);
     }
     BuildManager buildManager;
 
      void Start()
      {
         buildManager = BuildManager.instance;
+
      }
 }

@@ -26,5 +26,6 @@ public class BuildManager : MonoBehaviour
     public void setPiezaToBuild(GameObject caballero)
     {
         piezaColocar = caballero;
+
     }
 }
