@@ -510,7 +510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabEstandarCaballero: {fileID: 5192079609292275041, guid: 082f5043e3797c9448ca8dfc3ce34e5c,
     type: 3}
-  prefabCaballero: {fileID: 0}
+  prefabEstandarPeon: {fileID: 1794441275442233378, guid: 93ed3451b0bd2d84ca4711a1a305f7aa,
+    type: 3}
 --- !u!4 &592546203
 Transform:
   m_ObjectHideFlags: 0
@@ -835,7 +836,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 976066756}
         m_TargetAssemblyTypeName: tienda, Assembly-CSharp
-        m_MethodName: comprarCaballero
+        m_MethodName: comprarPeon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
