@@ -16,16 +16,15 @@ public class BuildManager : MonoBehaviour
     public GameObject prefabEstandarCaballero;
     public GameObject prefabEstandarPeon;
 
-    private GameObject piezaColocar;
+    private blueprints piezaColocar;
 
     public GameObject getPiezaToBuild ()
     {
-        return piezaColocar ;
+        //return piezaColocar ;
     }
 
-    public void setPiezaToBuild(GameObject caballero)
+   public void selectPiezaToBuild(blueprints pieza)
     {
-        piezaColocar = caballero;
-
+        piezaColocar = pieza;
     }
 }

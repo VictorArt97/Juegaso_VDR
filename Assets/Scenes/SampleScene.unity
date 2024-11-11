@@ -730,6 +730,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c5ea5c1611f414e9b8b8c96475d67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  caballero:
+    prefab: {fileID: 5192079609292275041, guid: 082f5043e3797c9448ca8dfc3ce34e5c,
+      type: 3}
+    coste: 1
+  peon:
+    prefab: {fileID: 1794441275442233378, guid: 93ed3451b0bd2d84ca4711a1a305f7aa,
+      type: 3}
+    coste: 1
 --- !u!1 &1011845403
 GameObject:
   m_ObjectHideFlags: 0

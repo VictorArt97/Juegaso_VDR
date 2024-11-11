@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class tienda : MonoBehaviour
 {
-  public void comprarCaballero()
+
+    public blueprints caballero;
+    public blueprints peon;
+
+  public void seleccionarCaballero()
     {
         Debug.Log("Caballero comprado");
-        buildManager.setPiezaToBuild(buildManager.prefabEstandarCaballero);
+        buildManager.selectPiezaToBuild(caballero);
     }
-    public void comprarPeon()
+    public void seleccionarPeon()
     {
         Debug.Log("peon comprado");
-        buildManager.setPiezaToBuild(buildManager.prefabEstandarPeon);
+        buildManager.selectPiezaToBuild(peon);
     }
     BuildManager buildManager;
 
