@@ -10,17 +10,23 @@ public class seleccion : MonoBehaviour
 
 
 
-    private GameObject pieza;
+    public GameObject pieza;
     private void Start()
     {
         rend = GetComponent<Renderer>();
 
         buildManager = BuildManager.instance;
     }
+
+    public Vector3 getBuildPosition()
+    {
+        return transform.position;
+    }
+
     private void OnMouseEnter()
     {
         rend.material.color = hovercolor;
-        if (buildManager.getPiezaToBuild() == null)
+       if (!buildManager.puedeConstruir)
          return;
         
     }
@@ -33,7 +39,7 @@ public class seleccion : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (buildManager.getPiezaToBuild()== null)
+        if (!buildManager.puedeConstruir)
          return;
        
         if (pieza != null)
@@ -42,8 +48,9 @@ public class seleccion : MonoBehaviour
             return;
         }
        
-        GameObject piezaColocar = buildManager.getPiezaToBuild();
-        
-        pieza = (GameObject)Instantiate(piezaColocar, transform.position, transform.rotation);
+       buildManager.buildPiezaOn(this);
+
+        if (buildManager.puedeConstruir)
+            return;
     }
 }

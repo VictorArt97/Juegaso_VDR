@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
@@ -18,9 +19,12 @@ public class BuildManager : MonoBehaviour
 
     private blueprints piezaColocar;
 
-    public GameObject getPiezaToBuild ()
+    public bool puedeConstruir { get { return piezaColocar != null; } }
+    
+    public void buildPiezaOn( seleccion node)
     {
-        //return piezaColocar ;
+      GameObject pieza = (GameObject) Instantiate(piezaColocar.prefab, node.getBuildPosition(), Quaternion.identity);
+       // seleccion.pieza
     }
 
    public void selectPiezaToBuild(blueprints pieza)
