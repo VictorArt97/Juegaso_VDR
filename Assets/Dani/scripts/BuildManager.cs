@@ -23,8 +23,16 @@ public class BuildManager : MonoBehaviour
     
     public void buildPiezaOn( seleccion node)
     {
+        if (Player_Stats.Dinero  < piezaColocar.coste)
+        {
+            Debug.Log("No hay dinero");
+            return;
+        }
+
+        Player_Stats.Dinero -= piezaColocar.coste;
+
       GameObject pieza = (GameObject) Instantiate(piezaColocar.prefab, node.getBuildPosition(), Quaternion.identity);
-       //seleccion.pieza = pieza;
+      node.pieza = pieza;
        
     }
 

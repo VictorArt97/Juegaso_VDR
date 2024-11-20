@@ -55,5 +55,7 @@ public class seleccion : MonoBehaviour
 
         if (buildManager.puedeConstruir)
             return;
+
+
     }
 }
