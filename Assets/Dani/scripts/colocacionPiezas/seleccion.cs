@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class seleccion : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class seleccion : MonoBehaviour
 
 
     public GameObject pieza;
+
+
     private void Start()
     {
         rend = GetComponent<Renderer>();

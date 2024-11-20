@@ -24,7 +24,8 @@ public class BuildManager : MonoBehaviour
     public void buildPiezaOn( seleccion node)
     {
       GameObject pieza = (GameObject) Instantiate(piezaColocar.prefab, node.getBuildPosition(), Quaternion.identity);
-       // seleccion.pieza
+       //seleccion.pieza = pieza;
+       
     }
 
    public void selectPiezaToBuild(blueprints pieza)
