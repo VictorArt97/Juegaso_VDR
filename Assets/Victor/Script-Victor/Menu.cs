@@ -8,6 +8,9 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] GameObject menuPausa;
     private bool pausa;
+
+    [SerializeField] AudioClip sonidoApretar;
+    [SerializeField] Audio_Manager manager;
     void Start()
     {
         
@@ -41,17 +44,19 @@ public class Menu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
     public void Empezar()
     {
+        
         SceneManager.LoadScene(2);
     }
     public void Configuracion()
     {
+        
         SceneManager.LoadScene(1);
     }
     public void Salir()
     {
+        
         Application.Quit();
     }
 }

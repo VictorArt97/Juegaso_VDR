@@ -6,6 +6,8 @@ public class Audio_Manager : MonoBehaviour
 {
     [SerializeField] AudioSource sfx;
     
+    
+    
     void ReproducirSonido(AudioClip SonidoBoton)
     {
         sfx.PlayOneShot(SonidoBoton);
