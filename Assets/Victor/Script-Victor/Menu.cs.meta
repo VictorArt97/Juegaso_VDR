@@ -3,7 +3,10 @@ guid: 9c8c07fbabadce642bd862d13cd11ba6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - menuPausa: {instanceID: 0}
+  - sonidoApretar: {fileID: 8300000, guid: b5d7626bd4388d04fb1f857fbdff8ed6, type: 3}
+  - manager: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

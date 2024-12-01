@@ -21,18 +21,28 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(1);
+            if (pausa == false)
+            {
+                pausa = true;
+                menuPausa.SetActive(true);
+
+                Time.timeScale = 0f;
+
+            
+
+            }
         }
     }
 
     public void Reanudar ()
     {
+        new WaitForSeconds(300);
         menuPausa.SetActive(false);
         pausa = false;
 
         Time.timeScale = 1;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
+       
     }
     public void Empezar()
     {
@@ -46,7 +56,7 @@ public class Menu : MonoBehaviour
     }
     public void Salir()
     {
-        new WaitForSecondsRealtime(3);
+        
         Application.Quit();
     }
     public void TittleScreen()
