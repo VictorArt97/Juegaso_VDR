@@ -12,7 +12,7 @@ public class Volumen : MonoBehaviour
 
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
+        slider.value = PlayerPrefs.GetFloat("volumenAudio", 0.2f);
         AudioListener.volume = slider.value; // sacar el volumen del juego y darle el valor del slider (0 a 1)
         RevisarSiEstoyMuteado();
         
