@@ -30,6 +30,18 @@ MonoBehaviour:
     m_Localized: hinausgehen
     m_Metadata:
       m_Items: []
+  - m_Id: 43594893004800
+    m_Localized: "Kehren Sie zum Startbildschirm zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44158649405440
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046950232064
+    m_Localized: Volumen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

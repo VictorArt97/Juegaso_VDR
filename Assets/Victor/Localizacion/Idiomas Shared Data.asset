@@ -15,16 +15,28 @@ MonoBehaviour:
   m_TableCollectionName: Idiomas
   m_TableCollectionNameGuidString: da78a8dbdf472984ab5e373752f4dc7b
   m_Entries:
+  - m_Id: 43594893004800
+    m_Key: Volver
+    m_Metadata:
+      m_Items: []
   - m_Id: 1407555768320
-    m_Key: Text(Salir)
+    m_Key: Salir
     m_Metadata:
       m_Items: []
   - m_Id: 1069926879232
-    m_Key: Text(Configuracion)
+    m_Key: Configuracion
     m_Metadata:
       m_Items: []
   - m_Id: 63679795200
-    m_Key: Text(Empezar)
+    m_Key: Empezar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44158649405440
+    m_Key: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046950232064
+    m_Key: volumen
     m_Metadata:
       m_Items: []
   m_Metadata:

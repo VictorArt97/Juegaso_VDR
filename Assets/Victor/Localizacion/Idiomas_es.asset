@@ -30,6 +30,18 @@ MonoBehaviour:
     m_Localized: Salir
     m_Metadata:
       m_Items: []
+  - m_Id: 43594893004800
+    m_Localized: Volver a la pantalla de inicio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44158649405440
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046950232064
+    m_Localized: Volumen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

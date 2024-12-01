@@ -21,17 +21,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pausa == false)
-            {
-                pausa = true;
-                menuPausa.SetActive(true);
-
-                Time.timeScale = 0f;
-
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-            }
+            SceneManager.LoadScene(1);
         }
     }
 

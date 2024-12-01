@@ -30,6 +30,18 @@ MonoBehaviour:
     m_Localized: Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 43594893004800
+    m_Localized: Return to home screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44158649405440
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046950232064
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
