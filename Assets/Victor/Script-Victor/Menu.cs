@@ -46,17 +46,21 @@ public class Menu : MonoBehaviour
     }
     public void Empezar()
     {
-        
+        new WaitForSecondsRealtime(3);
         SceneManager.LoadScene(2);
     }
     public void Configuracion()
     {
-        
+        new WaitForSecondsRealtime(3);
         SceneManager.LoadScene(1);
     }
     public void Salir()
     {
-        
+        new WaitForSecondsRealtime(3);
         Application.Quit();
+    }
+    public void TittleScreen()
+    {
+        SceneManager.LoadScene(0);
     }
 }
