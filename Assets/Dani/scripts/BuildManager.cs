@@ -20,7 +20,8 @@ public class BuildManager : MonoBehaviour
     private blueprints piezaColocar;
 
     public bool puedeConstruir { get { return piezaColocar != null; } }
-    
+    public bool tieneDinero { get { return Player_Stats.Dinero >= piezaColocar.coste; } }
+
     public void buildPiezaOn( seleccion node)
     {
         if (Player_Stats.Dinero  < piezaColocar.coste)
