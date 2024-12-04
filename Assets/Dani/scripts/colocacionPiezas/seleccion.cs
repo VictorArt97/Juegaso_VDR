@@ -54,19 +54,23 @@ public class seleccion : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+
+        if (pieza != null)
+        {
+            buildManager.SeleccionarNodo(this);
+            return;
+        }
+
         if (!buildManager.puedeConstruir)
          return;
        
-        if (pieza != null)
-        {
-            Debug.Log("No puedes poner esto aqui");
-            return;
-        }
        
        buildManager.buildPiezaOn(this);
 
-        if (buildManager.puedeConstruir)
-            return;
+        
 
 
     }

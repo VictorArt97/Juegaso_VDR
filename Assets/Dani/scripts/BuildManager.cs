@@ -18,6 +18,9 @@ public class BuildManager : MonoBehaviour
     public GameObject prefabEstandarPeon;
 
     private blueprints piezaColocar;
+    private seleccion seleccionarNodo;
+
+    
 
     public bool puedeConstruir { get { return piezaColocar != null; } }
     public bool tieneDinero { get { return Player_Stats.Dinero >= piezaColocar.coste; } }
@@ -37,8 +40,29 @@ public class BuildManager : MonoBehaviour
        
     }
 
+    public void SeleccionarNodo (seleccion node)
+    {
+        if (seleccionarNodo == node)
+        { 
+
+        
+        }
+
+        seleccionarNodo = node;
+        piezaColocar = null;
+
+    }
+    public void deseleccionarNodo()
+    {
+        seleccionarNodo = null;
+        //github
+    }
+
    public void selectPiezaToBuild(blueprints pieza)
     {
         piezaColocar = pieza;
+        deseleccionarNodo();
     }
+
+    
 }
