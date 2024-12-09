@@ -20,6 +20,8 @@ public class BuildManager : MonoBehaviour
     private blueprints piezaColocar;
     private seleccion seleccionarNodo;
 
+    public nodoUI nodoUI;
+
     
 
     public bool puedeConstruir { get { return piezaColocar != null; } }
@@ -42,26 +44,26 @@ public class BuildManager : MonoBehaviour
 
     public void SeleccionarNodo (seleccion node)
     {
-        if (seleccionarNodo == node)
-        { 
-
-        
-        }
+       
 
         seleccionarNodo = node;
         piezaColocar = null;
+
+       // nodoUI.establecerObjetivo(node);
 
     }
     public void deseleccionarNodo()
     {
         seleccionarNodo = null;
         //github
+        piezaColocar = null;
     }
 
    public void selectPiezaToBuild(blueprints pieza)
     {
         piezaColocar = pieza;
         deseleccionarNodo();
+        seleccionarNodo = null;
     }
 
     
