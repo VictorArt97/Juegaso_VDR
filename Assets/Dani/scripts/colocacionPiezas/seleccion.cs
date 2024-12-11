@@ -18,6 +18,7 @@ public class seleccion : MonoBehaviour
     private void Start()
     {
         rend = GetComponent<Renderer>();
+        colorInicial = rend.material.color; 
 
         buildManager = BuildManager.instance;
     }
@@ -30,7 +31,9 @@ public class seleccion : MonoBehaviour
     private void OnMouseEnter()
     {
         rend.material.color = hovercolor;
-       if (!buildManager.puedeConstruir)
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        if (!buildManager.puedeConstruir)
          return;
 
         if (buildManager.tieneDinero)

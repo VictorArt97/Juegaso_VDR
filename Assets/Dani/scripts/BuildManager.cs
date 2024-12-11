@@ -49,22 +49,17 @@ public class BuildManager : MonoBehaviour
         seleccionarNodo = node;
         piezaColocar = null;
 
-       // nodoUI.establecerObjetivo(node);
+       nodoUI.establecerObjetivo(node);
 
     }
-    public void deseleccionarNodo()
-    {
-        seleccionarNodo = null;
-        //github
-        piezaColocar = null;
-    }
+   
 
    public void selectPiezaToBuild(blueprints pieza)
     {
         piezaColocar = pieza;
-        deseleccionarNodo();
+    
         seleccionarNodo = null;
     }
-
+    
     
 }
