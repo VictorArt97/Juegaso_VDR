@@ -10,7 +10,7 @@ public class seleccion : MonoBehaviour
 
     BuildManager buildManager;
 
-
+    public blueprints blueprints;
 
     public GameObject pieza;
 
@@ -76,5 +76,14 @@ public class seleccion : MonoBehaviour
         
 
 
+    }
+
+    public void venderPieza()
+    {
+        Player_Stats.Dinero += blueprints.GetCantidadCoste();
+
+        Destroy(pieza);
+
+        blueprints = null;
     }
 }

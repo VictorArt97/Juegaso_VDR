@@ -44,13 +44,25 @@ public class BuildManager : MonoBehaviour
 
     public void SeleccionarNodo (seleccion node)
     {
-       
+       if (seleccionarNodo == node)
+        {
+            deseleccionarNodo();
+            return;
+
+        }
 
         seleccionarNodo = node;
         piezaColocar = null;
 
        nodoUI.establecerObjetivo(node);
 
+    }
+
+    public void deseleccionarNodo()
+    {
+        seleccionarNodo = null;
+
+        nodoUI.esconder();
     }
    
 
@@ -59,6 +71,8 @@ public class BuildManager : MonoBehaviour
         piezaColocar = pieza;
     
         seleccionarNodo = null;
+
+        nodoUI.esconder();
     }
     
     
