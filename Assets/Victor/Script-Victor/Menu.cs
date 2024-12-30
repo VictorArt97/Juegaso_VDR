@@ -11,9 +11,10 @@ public class Menu : MonoBehaviour
 
     [SerializeField] AudioClip sonidoApretar;
     [SerializeField] Audio_Manager manager;
+    [SerializeField] GameObject InfoCharactMenu;
     void Start()
     {
-        
+        InfoCharactMenu.SetActive(false);
     }
 
     
@@ -63,4 +64,10 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void InfoCharacters()
+    {
+        InfoCharactMenu.SetActive(true);
+    }
+
 }

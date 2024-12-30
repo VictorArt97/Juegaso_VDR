@@ -1943,7 +1943,7 @@ GameObject:
   - component: {fileID: 1011845406}
   - component: {fileID: 1011845405}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Button_Peon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 63e9f6373b7cac34988a3884daea8926, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b3d4e0257d3a3b34f96147631a8d9884, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2359,7 +2359,7 @@ GameObject:
   - component: {fileID: 1298983172}
   - component: {fileID: 1298983171}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_Caballero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d8a6d0890d0314743bf7d477e496e1fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa0c6118724dde34288fb6e94a1c6da2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
