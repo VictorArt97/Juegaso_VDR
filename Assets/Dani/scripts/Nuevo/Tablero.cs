@@ -18,6 +18,10 @@ public class Tablero : MonoBehaviour
      public Color hovercolor;
     private Color colorInicial;
 
+    [Header("Prefabs y materiales")]
+    [SerializeField] private GameObject[] prefabs;
+    [SerializeField] private Material[] materialesEquipos;
+
     private void Start()
     {
         rend = GetComponent<Renderer>();
@@ -28,6 +32,9 @@ public class Tablero : MonoBehaviour
     {
         GenerarTodasLasCasillas(1.8f, Total_Casillas_X, Total_Casillas_Y);
 
+        //RECORDAR COMENTAR LA SIGUIENTE LINEA
+
+        spwanearUnaSolaPieza(tipoPieza.caballero, 0);
 
     }
     private void Update()
@@ -132,4 +139,19 @@ private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
         rend.material.color = colorInicial ;
 
     }
+
+//Spawnear Piezas
+
+private void spawnearTodasLasPiezas(){}
+private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
+{
+    Pieza p = Instantiate(prefabs[(int)tipo -1], transform).GetComponent<Pieza>();
+
+    p.tipo = tipo;
+    p.equipo = equipo;
+    p.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
+
+    return p;
+}
+
 }
