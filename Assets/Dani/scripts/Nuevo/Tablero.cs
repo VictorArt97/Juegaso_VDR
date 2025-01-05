@@ -3,12 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class Tablero : MonoBehaviour
 {
+    private Renderer rend;
+    [SerializeField] private Material materialCasilla;
     private const int Total_Casillas_X = 12;
     private const int Total_Casillas_Y = 12;
     private GameObject[,] casillas;
+    private Camera camaraActual;
+    private Vector2Int currentHover;
+
+     public Color hovercolor;
+    private Color colorInicial;
+
+    private void Start()
+    {
+        rend = GetComponent<Renderer>();
+        colorInicial = rend.material.color; 
+    }
 
     private void Awake()
     {
@@ -16,7 +30,44 @@ public class Tablero : MonoBehaviour
 
 
     }
+    private void Update()
+    {
+      if(!camaraActual)
+      {
+        camaraActual = Camera.main;
+        return;
+      }  
 
+      RaycastHit info;
+      Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
+      if(Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
+      {
+        Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
+        //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
+        if(currentHover == -Vector2Int.one)
+        {
+            currentHover = hitPosition;
+            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+        }
+        //esto ocurre cuando pasamos de una casilla a otra
+        if(currentHover != -Vector2Int.one)
+        {
+            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+            currentHover = hitPosition;
+            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+        }
+      }
+      else
+      {
+        if(currentHover != Vector2Int.one)
+        {
+            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+           currentHover = Vector2Int.one; 
+        }
+      }
+    }
+
+//Tablero
     private void GenerarTodasLasCasillas(float tamanioCasilla, int contadorCasillasX, int contadorCasillasY  )
     {
         casillas = new GameObject[contadorCasillasX, contadorCasillasY];
@@ -37,7 +88,7 @@ public class Tablero : MonoBehaviour
 
         Mesh mesh = new Mesh();
         objetoCasilla.AddComponent<MeshFilter>().mesh = mesh;
-        objetoCasilla.AddComponent<MeshRenderer>();
+        objetoCasilla.AddComponent<MeshRenderer>().material = materialCasilla;
 
         Vector3[] vertices = new Vector3[4];
         vertices[0] = new Vector3(x* tamanioCasilla, 0, y*tamanioCasilla);
@@ -50,9 +101,35 @@ public class Tablero : MonoBehaviour
         mesh.vertices = vertices; 
         mesh.triangles = tris;
 
+        objetoCasilla.layer = LayerMask.NameToLayer("Casilla");
+        mesh.RecalculateNormals();
         objetoCasilla.AddComponent<BoxCollider>();
 
         return objetoCasilla;
         
+    }
+
+private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
+{
+    for(int x = 0 ; x < Total_Casillas_X ; x++)
+    {
+        for (int y = 0; y < Total_Casillas_Y; y++)
+        {
+            if(casillas[x,y] == hitInfo)
+            {
+                return new Vector2Int(x,y);
+            }
+        }
+    }
+    return -Vector2Int.one; //invalido
+}
+ private void OnMouseEnter()
+    {
+        rend.material.color = hovercolor;
+    }
+     private void OnMouseExit()
+    {
+        rend.material.color = colorInicial ;
+
     }
 }
