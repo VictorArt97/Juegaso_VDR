@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class Tablero : MonoBehaviour
 {
+
+    private Pieza[,] piezasTablero;
     private Renderer rend;
     [SerializeField] private Material materialCasilla;
     private const int Total_Casillas_X = 12;
@@ -34,7 +36,9 @@ public class Tablero : MonoBehaviour
 
         //RECORDAR COMENTAR LA SIGUIENTE LINEA
 
-        spwanearUnaSolaPieza(tipoPieza.caballero, 0);
+        //spwanearUnaSolaPieza(tipoPieza.caballero, 0);
+
+        spawnearTodasLasPiezas();
 
     }
     private void Update()
@@ -142,7 +146,23 @@ private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
 
 //Spawnear Piezas
 
-private void spawnearTodasLasPiezas(){}
+private void spawnearTodasLasPiezas()
+{
+    piezasTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
+
+    int equipoRosa = 0, equipoAzul = 1;
+
+    //equipo rosa
+
+    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+    piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+    piezasTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasTablero[0,7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasTablero[0,6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
+
+}
 private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
 {
     Pieza p = Instantiate(prefabs[(int)tipo -1], transform).GetComponent<Pieza>();

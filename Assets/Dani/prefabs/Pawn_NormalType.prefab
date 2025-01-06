@@ -849,8 +849,8 @@ GameObject:
   - component: {fileID: 1873432668885399025}
   - component: {fileID: 7240233511726096555}
   - component: {fileID: 6512369310598400738}
-  - component: {fileID: -3579285561784820340}
   - component: {fileID: -2149035614477639548}
+  - component: {fileID: 1031087631181149717}
   m_Layer: 0
   m_Name: Pawn_NormalType
   m_TagString: Untagged
@@ -866,8 +866,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430191026189868309}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.32816693, y: 0.6263438, z: 0.6263437, w: 0.3281669}
-  m_LocalPosition: {x: -4.0347, y: 0.644, z: 3.0067}
+  m_LocalRotation: {x: -0.3281683, y: 0.626343, z: 0.626343, w: 0.3281683}
+  m_LocalPosition: {x: 11.058511, y: 0.6747024, z: -5.930197}
   m_LocalScale: {x: 0.08887043, y: 0.08887043, z: 0.08887043}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -932,18 +932,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3579285561784820340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430191026189868309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9200b8d4ecbece34187af0b23a0df961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &-2149035614477639548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -965,6 +953,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0905235, y: 1.7320147, z: 1.6193928}
   m_Center: {x: -2.664535e-15, y: -0.00000008940699, z: 6.0668913e-15}
+--- !u!114 &1031087631181149717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430191026189868309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061d0bc2683c73d4381e40eb2a12de0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipo: 0
+  tipo: 0
+  xActual: 0
+  yActual: 0
 --- !u!1 &459219941829595216
 GameObject:
   m_ObjectHideFlags: 0
