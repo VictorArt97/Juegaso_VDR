@@ -24,11 +24,7 @@ public class Tablero : MonoBehaviour
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private Material[] materialesEquipos;
 
-    private void Start()
-    {
-        rend = GetComponent<Renderer>();
-        colorInicial = rend.material.color; 
-    }
+ 
 
     private void Awake()
     {
@@ -36,7 +32,7 @@ public class Tablero : MonoBehaviour
 
         //RECORDAR COMENTAR LA SIGUIENTE LINEA
 
-        //spwanearUnaSolaPieza(tipoPieza.caballero, 0);
+        //spwanearUnaSolaPieza(tipoPieza.peon, 0);
 
         spawnearTodasLasPiezas();
 
@@ -134,15 +130,7 @@ private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
     }
     return -Vector2Int.one; //invalido
 }
- private void OnMouseEnter()
-    {
-        rend.material.color = hovercolor;
-    }
-     private void OnMouseExit()
-    {
-        rend.material.color = colorInicial ;
-
-    }
+ 
 
 //Spawnear Piezas
 
@@ -154,8 +142,8 @@ private void spawnearTodasLasPiezas()
 
     //equipo rosa
 
-    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-    piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
     piezasTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
     piezasTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
     piezasTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
@@ -172,6 +160,27 @@ private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
     p.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
 
     return p;
+}
+
+private void ColocarTodasLasPiezas()
+{
+    for(int x = 0; x < Total_Casillas_X; x++)
+    {
+        for(int y = 0; y < Total_Casillas_Y; y++)
+        {
+            if(piezasTablero[x,y] != null)
+            {
+                ColocarUnaPieza(x, y, true);
+            }
+        }
+    }
+}
+
+private void ColocarUnaPieza(int x, int y, bool force = false)
+{
+    piezasTablero[x,y].xActual = x;
+    piezasTablero[x,y].xActual = y;
+    //piezasTablero[x,y].transform.position = new Vector3(x*, yof)
 }
 
 }
