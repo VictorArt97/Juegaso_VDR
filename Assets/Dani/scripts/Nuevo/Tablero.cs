@@ -10,12 +10,19 @@ public class Tablero : MonoBehaviour
 
     private Pieza[,] piezasTablero;
     private Renderer rend;
+
     [SerializeField] private Material materialCasilla;
+    [SerializeField] private float tamanioCasilla;
+    [SerializeField] private float yOffset;
+    [SerializeField] private Vector3 centroTablero = Vector3.zero;
+
     private const int Total_Casillas_X = 12;
     private const int Total_Casillas_Y = 12;
+
     private GameObject[,] casillas;
     private Camera camaraActual;
     private Vector2Int currentHover;
+    private Vector3 bounds;
 
      public Color hovercolor;
     private Color colorInicial;
@@ -28,11 +35,12 @@ public class Tablero : MonoBehaviour
 
     private void Awake()
     {
-        GenerarTodasLasCasillas(1.8f, Total_Casillas_X, Total_Casillas_Y);
+        GenerarTodasLasCasillas(tamanioCasilla, Total_Casillas_X, Total_Casillas_Y);
 
         //RECORDAR COMENTAR LA SIGUIENTE LINEA
 
         //spwanearUnaSolaPieza(tipoPieza.peon, 0);
+
 
         spawnearTodasLasPiezas();
 
@@ -77,6 +85,10 @@ public class Tablero : MonoBehaviour
 //Tablero
     private void GenerarTodasLasCasillas(float tamanioCasilla, int contadorCasillasX, int contadorCasillasY  )
     {
+
+        yOffset += transform.position.y;
+        bounds = new Vector3((contadorCasillasX / 2) * tamanioCasilla, 0, (contadorCasillasX / 2) * tamanioCasilla) + centroTablero;
+
         casillas = new GameObject[contadorCasillasX, contadorCasillasY];
         for (int X = 0; X < contadorCasillasX; X++)
         {
@@ -98,10 +110,10 @@ public class Tablero : MonoBehaviour
         objetoCasilla.AddComponent<MeshRenderer>().material = materialCasilla;
 
         Vector3[] vertices = new Vector3[4];
-        vertices[0] = new Vector3(x* tamanioCasilla, 0, y*tamanioCasilla);
-        vertices[1] = new Vector3(x* tamanioCasilla, 0, (y+1)*tamanioCasilla);
-        vertices[2] = new Vector3((x+1)* tamanioCasilla, 0, y*tamanioCasilla);
-        vertices[3] = new Vector3((x+1)* tamanioCasilla, 0, (y+1)*tamanioCasilla);
+        vertices[0] = new Vector3(x* tamanioCasilla, yOffset, y*tamanioCasilla) - bounds;
+        vertices[1] = new Vector3(x* tamanioCasilla, yOffset, (y+1)*tamanioCasilla) - bounds;
+        vertices[2] = new Vector3((x+1)* tamanioCasilla, yOffset, y*tamanioCasilla) - bounds;
+        vertices[3] = new Vector3((x+1)* tamanioCasilla, yOffset, (y+1)*tamanioCasilla) - bounds;
 
         int[] tris = new int[]{0, 1, 2, 1, 3, 2};
 

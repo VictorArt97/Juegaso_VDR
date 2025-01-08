@@ -208,13 +208,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22371198, y: 0.66795325, z: -0.22502461, w: 0.6731682}
-  m_LocalPosition: {x: -6.59, y: 13.46, z: 10.38}
+  m_LocalRotation: {x: 0.25408718, y: 0.6569996, z: -0.2556374, w: 0.6621487}
+  m_LocalPosition: {x: -16.44, y: 13.48, z: 0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 36.999, y: 89.456, z: -0.294}
+  m_LocalEulerAnglesHint: {x: 42.252, y: 89.413, z: -0.361}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +503,7 @@ Transform:
   m_GameObject: {fileID: 1030781476850782772}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 8.88, y: 2.57, z: 10.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.594, y: 1.594, z: 1.594}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -590,7 +590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2277e08a8ead32a419be38886a13c720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialCasilla: {fileID: 2100000, guid: 9fe34de8b56abda458257b3e3512c78d, type: 2}
+  materialCasilla: {fileID: 2100000, guid: bcdca846f35617f478abbd647bb3bd35, type: 2}
+  tamanioCasilla: 1.6
+  yOffset: 0
+  centroTablero: {x: 0, y: 0, z: 0}
   hovercolor: {r: 0.1263417, g: 0.9245283, b: 0.061053626, a: 0}
   prefabs:
   - {fileID: 430191026189868309, guid: 407b6a8e96e836646ba5a648a9ca3592, type: 3}
@@ -652,7 +655,7 @@ Transform:
   m_GameObject: {fileID: 6400556760509296326}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 12.8, y: -1.71, z: 1.96}
+  m_LocalPosition: {x: 1.97, y: -1.71, z: 1.96}
   m_LocalScale: {x: 0.069148704, y: 0.07469187, z: 0.07469187}
   m_ConstrainProportionsScale: 0
   m_Children: []
