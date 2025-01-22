@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: f531e09e2ad2fb440b4eed7605863143, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -597,13 +597,13 @@ MonoBehaviour:
   hovercolor: {r: 0.1263417, g: 0.9245283, b: 0.061053626, a: 0}
   prefabs:
   - {fileID: 430191026189868309, guid: 407b6a8e96e836646ba5a648a9ca3592, type: 3}
-  - {fileID: 1361224739325114052, guid: 7b86c3c0d5d475140a5fa7547c4ec818, type: 3}
+  - {fileID: 2525243528614149082, guid: 895b41c2b49d96340be0d41b9f559bab, type: 3}
   - {fileID: 4419899971157165764, guid: ba8d0adb7f6183a488e0bc3b23db6243, type: 3}
   - {fileID: 5472673281952243889, guid: 69158e8ba176301489fa5f4585898672, type: 3}
   - {fileID: 5192079609292275041, guid: 082f5043e3797c9448ca8dfc3ce34e5c, type: 3}
   materialesEquipos:
-  - {fileID: 2100000, guid: 59dd97bd73b556e4c922c083be4dd0cf, type: 2}
-  - {fileID: 2100000, guid: 9fe34de8b56abda458257b3e3512c78d, type: 2}
+  - {fileID: 2100000, guid: 2d379bba9be24b84085dcfb8c5cbba90, type: 2}
+  - {fileID: 2100000, guid: 67240d48d31b1df42b1750143529fe7f, type: 2}
 --- !u!23 &4887430368389369619
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -44,6 +44,8 @@ public class Tablero : MonoBehaviour
 
         spawnearTodasLasPiezas();
 
+        ColocarTodasLasPiezas();
+
     }
     private void Update()
     {
@@ -154,7 +156,7 @@ private void spawnearTodasLasPiezas()
 
     //equipo rosa
 
-    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
     piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
     piezasTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
     piezasTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
@@ -188,11 +190,16 @@ private void ColocarTodasLasPiezas()
     }
 }
 
+private Vector3 CentroCasilla(int x, int y)
+    {
+        return new Vector3(x* tamanioCasilla, yOffset, y * tamanioCasilla)-bounds + new Vector3(tamanioCasilla/2,0, tamanioCasilla /2);
+    }
+
 private void ColocarUnaPieza(int x, int y, bool force = false)
 {
     piezasTablero[x,y].xActual = x;
     piezasTablero[x,y].xActual = y;
-    //piezasTablero[x,y].transform.position = new Vector3(x*, yof)
+    piezasTablero[x, y].transform.position = CentroCasilla(x, y);
 }
 
 }

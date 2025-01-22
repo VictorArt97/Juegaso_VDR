@@ -17,13 +17,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: metal details
+    second: {fileID: 2100000, guid: 2507fbfba040a3744aaafd48d2fe3337, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: surface armor
     second: {fileID: 2100000, guid: 2d379bba9be24b84085dcfb8c5cbba90, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: surface armor white
-    second: {fileID: 2100000, guid: ac453cfb4b6f45d4290a5f635228d9dc, type: 2}
+    second: {fileID: 2100000, guid: 67240d48d31b1df42b1750143529fe7f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
