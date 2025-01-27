@@ -31,6 +31,9 @@ public class Tablero : MonoBehaviour
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private Material[] materialesEquipos;
 
+
+
+    private Pieza arrastreActual;
  
 
     private void Awake()
@@ -73,7 +76,35 @@ public class Tablero : MonoBehaviour
             currentHover = hitPosition;
             casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
         }
-      }
+
+
+
+            if (Input.GetMouseButtonDown(0)) 
+            {
+                if (piezasTablero[hitPosition.x, hitPosition.y] != null) 
+                {
+                    //es nuestro turno o no?
+                    if (true)
+                    {
+                        arrastreActual = piezasTablero[hitPosition.x, hitPosition.y];  
+                    }
+                }
+            }
+            if (arrastreActual != null &&  Input.GetMouseButtonUp(0))
+            {
+                Vector2Int posicionAnterior = new Vector2Int(arrastreActual.xActual, arrastreActual.yActual);
+
+                bool movimientoValido = MoverA(arrastreActual, hitPosition.x, hitPosition.y);
+                if (!movimientoValido) 
+                {
+                    arrastreActual.transform.position = CentroCasilla(posicionAnterior.x, posicionAnterior.y);
+                    arrastreActual = null;
+
+                }
+            }
+
+
+        }
       else
       {
         if(currentHover != Vector2Int.one)
@@ -84,7 +115,30 @@ public class Tablero : MonoBehaviour
       }
     }
 
-//Tablero
+    private bool MoverA(Pieza cp, int x, int y)
+    {
+        if (piezasTablero[x, y] != null)
+        {
+            Pieza ocp = piezasTablero[x,y];
+
+            if (cp.equipo == ocp.equipo)
+            {
+                return false;
+            }
+        }
+
+
+        Vector2Int posicionAnterior = new Vector2Int(cp.xActual, cp.yActual);
+
+        piezasTablero[x, y] = cp;
+        piezasTablero[posicionAnterior.x, posicionAnterior.y] = null;
+
+        ColocarUnaPieza(x, y);
+
+        return true;
+    }
+
+    //Tablero
     private void GenerarTodasLasCasillas(float tamanioCasilla, int contadorCasillasX, int contadorCasillasY  )
     {
 

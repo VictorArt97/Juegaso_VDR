@@ -20,4 +20,15 @@ public class Pieza : MonoBehaviour
 
     private Vector3 posicionDeseada;
     private Vector3 desiredScale;
-} 
+
+    public virtual void setPosition(Vector3 posicion, bool force = false)
+    {
+        posicionDeseada = posicion;
+        if (force)
+        {
+            transform.position = posicionDeseada;
+        }
+
+    }
+}
+   
