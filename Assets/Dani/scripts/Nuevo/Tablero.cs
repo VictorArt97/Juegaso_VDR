@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class Tablero : MonoBehaviour
 {
 
-    private Pieza[,] piezasTablero;
+    private Pieza[,] piezasEnTablero;
     private Renderer rend;
 
     [SerializeField] private Material materialCasilla;
@@ -33,7 +33,7 @@ public class Tablero : MonoBehaviour
 
 
 
-    private Pieza arrastreActual;
+    private Pieza piezaArrastrada;
  
 
     private void Awake()
@@ -81,25 +81,44 @@ public class Tablero : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) 
             {
-                if (piezasTablero[hitPosition.x, hitPosition.y] != null) 
+                if (piezasEnTablero[hitPosition.x, hitPosition.y] != null) 
                 {
                     //es nuestro turno o no?
                     if (true)
                     {
-                        arrastreActual = piezasTablero[hitPosition.x, hitPosition.y];  
+                        piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];  
                     }
                 }
             }
-            if (arrastreActual != null &&  Input.GetMouseButtonUp(0))
+            if (piezaArrastrada != null &&  Input.GetMouseButtonUp(0))
             {
-                Vector2Int posicionAnterior = new Vector2Int(arrastreActual.xActual, arrastreActual.yActual);
+                Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
 
-                bool movimientoValido = MoverA(arrastreActual, hitPosition.x, hitPosition.y);
-                if (!movimientoValido) 
+                bool movimientoValido = MoverA(piezaArrastrada, hitPosition.x, hitPosition.y);
+                if (!movimientoValido)
                 {
-                    arrastreActual.transform.position = CentroCasilla(posicionAnterior.x, posicionAnterior.y);
-                    arrastreActual = null;
+                    piezaArrastrada.setPosition(CentroCasilla(posicionAnterior.x, posicionAnterior.y));
+                    piezaArrastrada = null;
 
+                }
+                else 
+                {
+                    piezaArrastrada = null ;
+                }
+            }
+            else
+            {
+                if(currentHover != -Vector2Int.one)
+                {
+                    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+                    currentHover = -Vector2Int.one;
+
+                }
+
+                if(piezaArrastrada && Input.GetMouseButtonUp(0))
+                {
+                    piezaArrastrada.setPosition(CentroCasilla(piezaArrastrada.xActual, piezaArrastrada.yActual));
+                    piezaArrastrada = null;
                 }
             }
 
@@ -110,29 +129,34 @@ public class Tablero : MonoBehaviour
         if(currentHover != Vector2Int.one)
         {
             casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+
            currentHover = Vector2Int.one; 
         }
       }
     }
 
-    private bool MoverA(Pieza cp, int x, int y)
+    private bool MoverA(Pieza piezaAMover, int x, int y)
     {
-        if (piezasTablero[x, y] != null)
+        if (piezasEnTablero[x, y] != null) //Si hay pieza en donde pretendo mover...
         {
-            Pieza ocp = piezasTablero[x,y];
+            Pieza piezaEnCasilla = piezasEnTablero[x,y]; //Obtén información de esa pieza
 
-            if (cp.equipo == ocp.equipo)
+            if (piezaAMover.equipo == piezaEnCasilla.equipo) //Y si es de mi equipo. no puedo moverme.
             {
                 return false;
             }
         }
 
 
-        Vector2Int posicionAnterior = new Vector2Int(cp.xActual, cp.yActual);
+        Vector2Int posicionAnterior = new Vector2Int(piezaAMover.xActual, piezaAMover.yActual);
 
-        piezasTablero[x, y] = cp;
-        piezasTablero[posicionAnterior.x, posicionAnterior.y] = null;
+        //Actualizo la posición de mi pieza a la coordenada x, y.
+        piezasEnTablero[x, y] = piezaAMover;
 
+        //Dejo mi posición en nulo.
+        piezasEnTablero[posicionAnterior.x, posicionAnterior.y] = null;
+
+        //la coloco en la nueva coordenada.
         ColocarUnaPieza(x, y);
 
         return true;
@@ -204,19 +228,19 @@ private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
 
 private void spawnearTodasLasPiezas()
 {
-    piezasTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
+    piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
 
     int equipoRosa = 0, equipoAzul = 1;
 
     //equipo rosa
 
-    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-    piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
+    piezasEnTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+    piezasEnTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0,7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0,6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
 
 }
 private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
@@ -230,13 +254,15 @@ private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
     return p;
 }
 
+
+//colocar piezas
 private void ColocarTodasLasPiezas()
 {
     for(int x = 0; x < Total_Casillas_X; x++)
     {
         for(int y = 0; y < Total_Casillas_Y; y++)
         {
-            if(piezasTablero[x,y] != null)
+            if(piezasEnTablero[x,y] != null)
             {
                 ColocarUnaPieza(x, y, true);
             }
@@ -251,9 +277,9 @@ private Vector3 CentroCasilla(int x, int y)
 
 private void ColocarUnaPieza(int x, int y, bool force = false)
 {
-    piezasTablero[x,y].xActual = x;
-    piezasTablero[x,y].xActual = y;
-    piezasTablero[x, y].transform.position = CentroCasilla(x, y);
+    piezasEnTablero[x,y].xActual = x;
+    piezasEnTablero[x,y].xActual = y;
+    piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
 }
 
 }
