@@ -25,7 +25,7 @@ public class Pieza : MonoBehaviour
     private void Update()
     {
        transform.position = Vector3.Lerp(transform.position, posicionDeseada, Time.deltaTime * 10);
-        transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10);
+       transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10);
     }
 
     public virtual void setPosition(Vector3 posicion, bool force = false)

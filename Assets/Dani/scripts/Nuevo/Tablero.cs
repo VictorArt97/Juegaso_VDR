@@ -52,45 +52,45 @@ public class Tablero : MonoBehaviour
     }
     private void Update()
     {
-      if(!camaraActual)
-      {
-        camaraActual = Camera.main;
-        return;
-      }  
-
-      RaycastHit info;
-      Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
-      if(Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
-      {
-        Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
-        //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
-        if(currentHover == -Vector2Int.one)
+        if (!camaraActual)
         {
-            currentHover = hitPosition;
-            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
-        }
-        //esto ocurre cuando pasamos de una casilla a otra
-        if(currentHover != -Vector2Int.one)
-        {
-            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-            currentHover = hitPosition;
-            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+            camaraActual = Camera.main;
+            return;
         }
 
-
-
-            if (Input.GetMouseButtonDown(0)) 
+        RaycastHit info;
+        Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
+        {
+            Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
+            //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
+            if (currentHover == -Vector2Int.one)
             {
-                if (piezasEnTablero[hitPosition.x, hitPosition.y] != null) 
+                currentHover = hitPosition;
+                casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+            }
+            //esto ocurre cuando pasamos de una casilla a otra
+            if (currentHover != -Vector2Int.one)
+            {
+                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+                currentHover = hitPosition;
+                casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+            }
+
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (piezasEnTablero[hitPosition.x, hitPosition.y] != null)
                 {
                     //es nuestro turno o no?
                     if (true)
                     {
-                        piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];  
+                        piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];
                     }
                 }
             }
-            if (piezaArrastrada != null &&  Input.GetMouseButtonUp(0))
+            if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
                 Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
 
@@ -101,21 +101,21 @@ public class Tablero : MonoBehaviour
                     piezaArrastrada = null;
 
                 }
-                else 
+                else
                 {
-                    piezaArrastrada = null ;
+                    piezaArrastrada = null;
                 }
             }
             else
             {
-                if(currentHover != -Vector2Int.one)
+                if (currentHover != -Vector2Int.one)
                 {
                     casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
                     currentHover = -Vector2Int.one;
 
                 }
 
-                if(piezaArrastrada && Input.GetMouseButtonUp(0))
+                if (piezaArrastrada && Input.GetMouseButtonUp(0))
                 {
                     piezaArrastrada.setPosition(CentroCasilla(piezaArrastrada.xActual, piezaArrastrada.yActual));
                     piezaArrastrada = null;
@@ -124,15 +124,15 @@ public class Tablero : MonoBehaviour
 
 
         }
-      else
-      {
-        if(currentHover != Vector2Int.one)
+        else
         {
-            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+            if (currentHover != Vector2Int.one)
+            {
+                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
 
-           currentHover = Vector2Int.one; 
+                currentHover = Vector2Int.one;
+            }
         }
-      }
     }
 
     private bool MoverA(Pieza piezaAMover, int x, int y)
@@ -235,23 +235,25 @@ private void spawnearTodasLasPiezas()
     //equipo rosa
 
     piezasEnTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-    piezasEnTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasEnTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasEnTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0,7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0,6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
+    piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
 
-}
+    }
 private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
 {
-    Pieza p = Instantiate(prefabs[(int)tipo -1], transform).GetComponent<Pieza>();
+    GameObject piezaGO = Instantiate(prefabs[(int)tipo -1], Vector3.zero, Quaternion.identity);
+    piezaGO.transform.SetParent(transform);
+    Pieza pieza = piezaGO.GetComponent<Pieza>();
 
-    p.tipo = tipo;
-    p.equipo = equipo;
-    p.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
+    pieza.tipo = tipo;
+    pieza.equipo = equipo;
+    pieza.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
 
-    return p;
+    return pieza;
 }
 
 
@@ -278,8 +280,10 @@ private Vector3 CentroCasilla(int x, int y)
 private void ColocarUnaPieza(int x, int y, bool force = false)
 {
     piezasEnTablero[x,y].xActual = x;
-    piezasEnTablero[x,y].xActual = y;
+    piezasEnTablero[x,y].yActual = y;
     piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
 }
 
 }
+
+//VIDEO 3/5 ELIMINAR PIEZAS MUERTAS IGNORADO REVISAR MAS ADELANTE 
