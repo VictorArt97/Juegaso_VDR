@@ -12,6 +12,7 @@ public class Tablero : MonoBehaviour
     private Renderer rend;
 
     [SerializeField] private Material materialCasilla;
+    [SerializeField] private Material materialSeleccion;
     [SerializeField] private float tamanioCasilla;
     [SerializeField] private float yOffset;
     [SerializeField] private Vector3 centroTablero = Vector3.zero;
@@ -31,6 +32,8 @@ public class Tablero : MonoBehaviour
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private Material[] materialesEquipos;
 
+    private List<Vector2Int> movimientosDisponibles = new List<Vector2Int>();
+
 
 
     private Pieza piezaArrastrada;
@@ -44,7 +47,7 @@ public class Tablero : MonoBehaviour
 
         //spwanearUnaSolaPieza(tipoPieza.peon, 0);
 
-
+        
         spawnearTodasLasPiezas();
 
         ColocarTodasLasPiezas();
@@ -58,6 +61,9 @@ public class Tablero : MonoBehaviour
             return;
         }
 
+       
+      
+
         RaycastHit info;
         Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
@@ -67,14 +73,21 @@ public class Tablero : MonoBehaviour
             if (currentHover == -Vector2Int.one)
             {
                 currentHover = hitPosition;
+
                 casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+                casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
             }
             //esto ocurre cuando pasamos de una casilla a otra
             if (currentHover != -Vector2Int.one)
             {
                 casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+
+
                 currentHover = hitPosition;
+
                 casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+                casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
+             
             }
 
 
@@ -87,6 +100,10 @@ public class Tablero : MonoBehaviour
                     if (true)
                     {
                         piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];
+
+
+                        //consigue una lista de a donde se puede mover y cambia el color de las casillas
+                        movimientosDisponibles = piezaArrastrada.GetMovimientosDisponibles(ref piezasEnTablero, Total_Casillas_X, Total_Casillas_Y);
                     }
                 }
             }
@@ -126,8 +143,11 @@ public class Tablero : MonoBehaviour
         }
         else
         {
+
+            Debug.Log("Hola!");
             if (currentHover != Vector2Int.one)
             {
+                
                 casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
 
                 currentHover = Vector2Int.one;

@@ -591,10 +591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialCasilla: {fileID: 2100000, guid: bcdca846f35617f478abbd647bb3bd35, type: 2}
+  materialSeleccion: {fileID: 2100000, guid: a8367ab52cbbaa54eba6f67abe2b54e2, type: 2}
   tamanioCasilla: 1.6
   yOffset: 0
   centroTablero: {x: 0, y: 0, z: 0}
-  hovercolor: {r: 0.1263417, g: 0.9245283, b: 0.061053626, a: 0}
+  hovercolor: {r: 0.1263417, g: 0.9245283, b: 0.061053626, a: 0.9019608}
   prefabs:
   - {fileID: 815165641196230117, guid: 2dfba91b15aeadc498983d3a737574ba, type: 3}
   - {fileID: 5528818025991305254, guid: 7c4d00af6a9eaed4f973c6b7721bba65, type: 3}
