@@ -22,7 +22,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 128
       PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: fc39ccbc946572a489349ca4b14c88ce, type: 2}
+    overrideMaterial: {fileID: 2100000, guid: a8367ab52cbbaa54eba6f67abe2b54e2, type: 2}
     overrideMaterialPassIndex: 0
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 0
-      stencilReference: 0
+      stencilReference: 8
       stencilCompareFunction: 8
       passOperation: 0
       failOperation: 0

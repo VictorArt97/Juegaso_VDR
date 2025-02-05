@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Layout Tablero")]
-public class Layout_Tablero : MonoBehaviour
+public class Layout_Tablero : ScriptableObject
 {
     [Serializable]
     private class SetupTablero

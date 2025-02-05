@@ -8,10 +8,11 @@ using UnityEngine.UIElements;
 public class Tablero : MonoBehaviour
 {
 
-    private Pieza[,] piezasTablero;
+    private Pieza[,] piezasEnTablero;
     private Renderer rend;
 
     [SerializeField] private Material materialCasilla;
+    [SerializeField] private Material materialSeleccion;
     [SerializeField] private float tamanioCasilla;
     [SerializeField] private float yOffset;
     [SerializeField] private Vector3 centroTablero = Vector3.zero;
@@ -31,9 +32,11 @@ public class Tablero : MonoBehaviour
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private Material[] materialesEquipos;
 
+    private List<Vector2Int> movimientosDisponibles = new List<Vector2Int>();
 
 
-    private Pieza arrastreActual;
+
+    private Pieza piezaArrastrada;
  
 
     private void Awake()
@@ -44,7 +47,7 @@ public class Tablero : MonoBehaviour
 
         //spwanearUnaSolaPieza(tipoPieza.peon, 0);
 
-
+        
         spawnearTodasLasPiezas();
 
         ColocarTodasLasPiezas();
@@ -52,87 +55,128 @@ public class Tablero : MonoBehaviour
     }
     private void Update()
     {
-      if(!camaraActual)
-      {
-        camaraActual = Camera.main;
-        return;
-      }  
-
-      RaycastHit info;
-      Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
-      if(Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
-      {
-        Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
-        //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
-        if(currentHover == -Vector2Int.one)
+        if (!camaraActual)
         {
-            currentHover = hitPosition;
-            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
-        }
-        //esto ocurre cuando pasamos de una casilla a otra
-        if(currentHover != -Vector2Int.one)
-        {
-            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-            currentHover = hitPosition;
-            casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+            camaraActual = Camera.main;
+            return;
         }
 
+       
+      
 
-
-            if (Input.GetMouseButtonDown(0)) 
+        RaycastHit info;
+        Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
+        {
+            Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
+            //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
+            if (currentHover == -Vector2Int.one)
             {
-                if (piezasTablero[hitPosition.x, hitPosition.y] != null) 
+                currentHover = hitPosition;
+
+                casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+                casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
+            }
+            //esto ocurre cuando pasamos de una casilla a otra
+            if (currentHover != -Vector2Int.one)
+            {
+                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+
+
+                currentHover = hitPosition;
+
+                casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
+                casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
+             
+            }
+
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (piezasEnTablero[hitPosition.x, hitPosition.y] != null)
                 {
                     //es nuestro turno o no?
                     if (true)
                     {
-                        arrastreActual = piezasTablero[hitPosition.x, hitPosition.y];  
+                        piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];
+
+
+                        //consigue una lista de a donde se puede mover y cambia el color de las casillas
+                        movimientosDisponibles = piezaArrastrada.GetMovimientosDisponibles(ref piezasEnTablero, Total_Casillas_X, Total_Casillas_Y);
                     }
                 }
             }
-            if (arrastreActual != null &&  Input.GetMouseButtonUp(0))
+            if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
-                Vector2Int posicionAnterior = new Vector2Int(arrastreActual.xActual, arrastreActual.yActual);
+                Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
 
-                bool movimientoValido = MoverA(arrastreActual, hitPosition.x, hitPosition.y);
-                if (!movimientoValido) 
+                bool movimientoValido = MoverA(piezaArrastrada, hitPosition.x, hitPosition.y);
+                if (!movimientoValido)
                 {
-                    arrastreActual.transform.position = CentroCasilla(posicionAnterior.x, posicionAnterior.y);
-                    arrastreActual = null;
+                    piezaArrastrada.setPosition(CentroCasilla(posicionAnterior.x, posicionAnterior.y));
+                    piezaArrastrada = null;
 
+                }
+                else
+                {
+                    piezaArrastrada = null;
+                }
+            }
+            else
+            {
+                if (currentHover != -Vector2Int.one)
+                {
+                    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+                    currentHover = -Vector2Int.one;
+
+                }
+
+                if (piezaArrastrada && Input.GetMouseButtonUp(0))
+                {
+                    piezaArrastrada.setPosition(CentroCasilla(piezaArrastrada.xActual, piezaArrastrada.yActual));
+                    piezaArrastrada = null;
                 }
             }
 
 
         }
-      else
-      {
-        if(currentHover != Vector2Int.one)
+        else
         {
-            casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-           currentHover = Vector2Int.one; 
+
+            Debug.Log("Hola!");
+            if (currentHover != Vector2Int.one)
+            {
+                
+                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+
+                currentHover = Vector2Int.one;
+            }
         }
-      }
     }
 
-    private bool MoverA(Pieza cp, int x, int y)
+    private bool MoverA(Pieza piezaAMover, int x, int y)
     {
-        if (piezasTablero[x, y] != null)
+        if (piezasEnTablero[x, y] != null) //Si hay pieza en donde pretendo mover...
         {
-            Pieza ocp = piezasTablero[x,y];
+            Pieza piezaEnCasilla = piezasEnTablero[x,y]; //Obtén información de esa pieza
 
-            if (cp.equipo == ocp.equipo)
+            if (piezaAMover.equipo == piezaEnCasilla.equipo) //Y si es de mi equipo. no puedo moverme.
             {
                 return false;
             }
         }
 
 
-        Vector2Int posicionAnterior = new Vector2Int(cp.xActual, cp.yActual);
+        Vector2Int posicionAnterior = new Vector2Int(piezaAMover.xActual, piezaAMover.yActual);
 
-        piezasTablero[x, y] = cp;
-        piezasTablero[posicionAnterior.x, posicionAnterior.y] = null;
+        //Actualizo la posición de mi pieza a la coordenada x, y.
+        piezasEnTablero[x, y] = piezaAMover;
 
+        //Dejo mi posición en nulo.
+        piezasEnTablero[posicionAnterior.x, posicionAnterior.y] = null;
+
+        //la coloco en la nueva coordenada.
         ColocarUnaPieza(x, y);
 
         return true;
@@ -204,39 +248,43 @@ private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
 
 private void spawnearTodasLasPiezas()
 {
-    piezasTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
+    piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
 
     int equipoRosa = 0, equipoAzul = 1;
 
     //equipo rosa
 
-    piezasTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-    piezasTablero[0,11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasTablero[0,9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasTablero[0,5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasTablero[0,6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
+    piezasEnTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+    piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+    piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+    piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
 
-}
+    }
 private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
 {
-    Pieza p = Instantiate(prefabs[(int)tipo -1], transform).GetComponent<Pieza>();
+    GameObject piezaGO = Instantiate(prefabs[(int)tipo -1], Vector3.zero, Quaternion.identity);
+    piezaGO.transform.SetParent(transform);
+    Pieza pieza = piezaGO.GetComponent<Pieza>();
 
-    p.tipo = tipo;
-    p.equipo = equipo;
-    p.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
+    pieza.tipo = tipo;
+    pieza.equipo = equipo;
+    pieza.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
 
-    return p;
+    return pieza;
 }
 
+
+//colocar piezas
 private void ColocarTodasLasPiezas()
 {
     for(int x = 0; x < Total_Casillas_X; x++)
     {
         for(int y = 0; y < Total_Casillas_Y; y++)
         {
-            if(piezasTablero[x,y] != null)
+            if(piezasEnTablero[x,y] != null)
             {
                 ColocarUnaPieza(x, y, true);
             }
@@ -251,9 +299,11 @@ private Vector3 CentroCasilla(int x, int y)
 
 private void ColocarUnaPieza(int x, int y, bool force = false)
 {
-    piezasTablero[x,y].xActual = x;
-    piezasTablero[x,y].xActual = y;
-    piezasTablero[x, y].transform.position = CentroCasilla(x, y);
+    piezasEnTablero[x,y].xActual = x;
+    piezasEnTablero[x,y].yActual = y;
+    piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
 }
 
 }
+
+//VIDEO 3/5 ELIMINAR PIEZAS MUERTAS IGNORADO REVISAR MAS ADELANTE 
