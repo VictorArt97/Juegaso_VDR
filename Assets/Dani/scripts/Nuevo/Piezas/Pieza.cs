@@ -20,7 +20,7 @@ public class Pieza : MonoBehaviour
     public int yActual;
 
     private Vector3 posicionDeseada;
-    private Vector3 desiredScale = Vector3.one / 8;
+    private Vector3 desiredScale = Vector3.one ;
 
 
     private void Update()

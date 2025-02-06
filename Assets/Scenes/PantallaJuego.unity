@@ -597,14 +597,11 @@ MonoBehaviour:
   centroTablero: {x: 0, y: 0, z: 0}
   hovercolor: {r: 0.1263417, g: 0.9245283, b: 0.061053626, a: 0.9019608}
   prefabs:
-  - {fileID: 1000456551977632237, guid: 65e505f22850f624f8122c5a58dd852b, type: 3}
-  - {fileID: 1855149001101649055, guid: b9c1530ad47256d48b1fc22ad3a836c2, type: 3}
-  - {fileID: 8370838587981579957, guid: ceadf326df92eec49b8040d2680d7930, type: 3}
-  - {fileID: 7261853015221955990, guid: af545b25a55642f4a9d7996cbdb549c5, type: 3}
   - {fileID: 7562233968936476561, guid: 607bf974d8e0a4845a18cc7fe09a9ac4, type: 3}
-  - {fileID: 4996618956873919193, guid: 4cc9c0025d9ba664095c398fd9596fcc, type: 3}
-  - {fileID: 2739261500462956524, guid: 53cefd2f286f7ab4ca96788b20b5e7c6, type: 3}
   - {fileID: 9115956512127566681, guid: 7a0716bf8ae6c8d4dbbd42e032464830, type: 3}
+  - {fileID: 1855149001101649055, guid: b9c1530ad47256d48b1fc22ad3a836c2, type: 3}
+  - {fileID: 1000456551977632237, guid: 65e505f22850f624f8122c5a58dd852b, type: 3}
+  - {fileID: 2739261500462956524, guid: 53cefd2f286f7ab4ca96788b20b5e7c6, type: 3}
   materialesEquipos:
   - {fileID: 2100000, guid: 2d379bba9be24b84085dcfb8c5cbba90, type: 2}
   - {fileID: 2100000, guid: 67240d48d31b1df42b1750143529fe7f, type: 2}

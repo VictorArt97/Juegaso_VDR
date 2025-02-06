@@ -13,6 +13,9 @@ public class Tablero : MonoBehaviour
 
     [SerializeField] private Material materialCasilla;
     [SerializeField] private Material materialSeleccion;
+    [SerializeField] private Material materialIluminacion;
+
+
     [SerializeField] private float tamanioCasilla;
     [SerializeField] private float yOffset;
     [SerializeField] private Vector3 centroTablero = Vector3.zero;
@@ -66,7 +69,7 @@ public class Tablero : MonoBehaviour
 
         RaycastHit info;
         Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover")))
+        if (Physics.Raycast(ray, out info, 100, LayerMask.GetMask("Casilla", "Hover", "Iluminado")))
         {
             Vector2Int hitPosition = MirarInformacionCasilla(info.transform.gameObject);
             //esto ocurre en caso de que no estuvieramos apuntando a ninguna otra casilla
@@ -80,6 +83,7 @@ public class Tablero : MonoBehaviour
             //esto ocurre cuando pasamos de una casilla a otra
             if (currentHover != -Vector2Int.one)
             {
+                casillas[currentHover.x, currentHover.y].GetComponent<Renderer>().material = materialCasilla;
                 casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
 
 
@@ -104,11 +108,14 @@ public class Tablero : MonoBehaviour
 
                         //consigue una lista de a donde se puede mover y cambia el color de las casillas
                         movimientosDisponibles = piezaArrastrada.GetMovimientosDisponibles(ref piezasEnTablero, Total_Casillas_X, Total_Casillas_Y);
+                        iluminarCasillas();
                     }
                 }
             }
             if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
+                
+
                 Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
 
                 bool movimientoValido = MoverA(piezaArrastrada, hitPosition.x, hitPosition.y);
@@ -118,24 +125,24 @@ public class Tablero : MonoBehaviour
                     piezaArrastrada = null;
 
                 }
-                else
-                {
-                    piezaArrastrada = null;
-                }
+        
+                piezaArrastrada = null;
+                QutarIluminarCasillas();
             }
             else
             {
-                if (currentHover != -Vector2Int.one)
-                {
-                    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-                    currentHover = -Vector2Int.one;
+                //if (currentHover != -Vector2Int.one)
+                //{
+                //    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+                //    currentHover = -Vector2Int.one;
 
-                }
+                //}
 
                 if (piezaArrastrada && Input.GetMouseButtonUp(0))
                 {
                     piezaArrastrada.setPosition(CentroCasilla(piezaArrastrada.xActual, piezaArrastrada.yActual));
                     piezaArrastrada = null;
+                    QutarIluminarCasillas();
                 }
             }
 
@@ -144,14 +151,32 @@ public class Tablero : MonoBehaviour
         else
         {
 
-            Debug.Log("Hola!");
-            if (currentHover != Vector2Int.one)
-            {
+            //Debug.Log("Hola!");
+            //if (currentHover != Vector2Int.one)
+            //{
                 
-                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
+            //    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
 
-                currentHover = Vector2Int.one;
-            }
+            //    currentHover = Vector2Int.one;
+            //}
+        }
+    }
+
+    private void iluminarCasillas()
+    {
+        for (int i = 0; i < movimientosDisponibles.Count; i++)
+        {
+            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].layer = LayerMask.NameToLayer("Iluminado");
+            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].GetComponent<Renderer>().material = materialIluminacion;
+            //movimientosDisponibles.Clear();
+        }
+    }
+    private void QutarIluminarCasillas()
+    {
+        for (int i = 0; i < movimientosDisponibles.Count; i++)
+        {
+            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].layer = LayerMask.NameToLayer("Casilla");
+            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].GetComponent<Renderer>().material = materialCasilla; 
         }
     }
 
@@ -303,6 +328,10 @@ private void ColocarUnaPieza(int x, int y, bool force = false)
     piezasEnTablero[x,y].yActual = y;
     piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
 }
+
+
+
+//private bool contieneUnMovimientoValido(ref)
 
 }
 
