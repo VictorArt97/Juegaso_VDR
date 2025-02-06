@@ -592,6 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialCasilla: {fileID: 2100000, guid: bcdca846f35617f478abbd647bb3bd35, type: 2}
   materialSeleccion: {fileID: 2100000, guid: a8367ab52cbbaa54eba6f67abe2b54e2, type: 2}
+  materialIluminacion: {fileID: 2100000, guid: 3eab0aea04608be4da0052f9e14c1a2b, type: 2}
   tamanioCasilla: 1.6
   yOffset: 0
   centroTablero: {x: 0, y: 0, z: 0}
