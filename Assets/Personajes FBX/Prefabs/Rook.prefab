@@ -12159,8 +12159,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4710510655542958242}
   - component: {fileID: 5476760054036267045}
+  - component: {fileID: 1830043532713586023}
   m_Layer: 0
-  m_Name: Rook Ficha
+  m_Name: Rook_Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12194,6 +12195,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9200b8d4ecbece34187af0b23a0df961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1830043532713586023
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338112285240246808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 34b76607f0016cc4d8c5642a896516f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5345549576647598274
 GameObject:
   m_ObjectHideFlags: 0

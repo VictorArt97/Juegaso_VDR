@@ -14,4 +14,7 @@ public class DatosPersonaje : ScriptableObject
     public bool vivo;
     
     public float danio;
+
+    public float barraUlti ;                   
+    public float maxBarraUlti;             
 }

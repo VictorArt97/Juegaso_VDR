@@ -6062,7 +6062,7 @@ GameObject:
   - component: {fileID: 3886966240506193384}
   - component: {fileID: 8416879738118150177}
   m_Layer: 0
-  m_Name: Pawn_AttackType
+  m_Name: Pawn_AttackType_Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

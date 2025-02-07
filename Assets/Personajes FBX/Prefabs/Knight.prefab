@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 800890668121186126}
   - component: {fileID: 1247423939767144471}
+  - component: {fileID: 8324502676124999203}
   m_Layer: 0
-  m_Name: KNIGHT
+  m_Name: Knight_Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +32,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7639714353517228608}
-  - {fileID: 6173049773738141500}
   m_Father: {fileID: 6152385391357286429}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1247423939767144471
@@ -46,6 +46,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9200b8d4ecbece34187af0b23a0df961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8324502676124999203
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24353621457602036}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d354d583f0df1d469bd56c1cc0ff2b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &46473287875074474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3629,6 +3650,7 @@ GameObject:
   - component: {fileID: 6152385391357286429}
   - component: {fileID: 8225978833973117650}
   - component: {fileID: 6148197944191541343}
+  - component: {fileID: 4391254042081270440}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -3668,11 +3690,6 @@ MonoBehaviour:
   tipo: 0
   xActual: 0
   yActual: 0
-  caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
-  accionesDisponibles: 3
-  barraUlti: 0
-  maxBarraUlti: 100
-  animator: {fileID: 0}
 --- !u!23 &6148197944191541343
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3715,6 +3732,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4391254042081270440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855149001101649055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278fd6073a3d8fd4c96bce2501d8f846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
 --- !u!1 &1869124352984254073
 GameObject:
   m_ObjectHideFlags: 0
@@ -13375,37 +13405,6 @@ Transform:
   m_Children:
   - {fileID: 4641848437056967365}
   m_Father: {fileID: 1493110664024404392}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5613548046365575939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6173049773738141500}
-  m_Layer: 0
-  m_Name: Object007
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6173049773738141500
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5613548046365575939}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -12.717505, y: -10.480231, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 800890668121186126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5680690093988023253
 GameObject:
