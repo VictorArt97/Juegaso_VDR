@@ -3668,6 +3668,11 @@ MonoBehaviour:
   tipo: 0
   xActual: 0
   yActual: 0
+  caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
+  accionesDisponibles: 3
+  barraUlti: 0
+  maxBarraUlti: 100
+  animator: {fileID: 0}
 --- !u!23 &6148197944191541343
 MeshRenderer:
   m_ObjectHideFlags: 0
