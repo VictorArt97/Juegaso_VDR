@@ -81,6 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
+  boostDanio: 0
+  boostDefensa: 0
+  mainCamera: {fileID: 0}
+  vistaCercana: {fileID: 0}
 --- !u!1 &46473287875074474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1464,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac453cfb4b6f45d4290a5f635228d9dc, type: 2}
+  - {fileID: 2100000, guid: b0593c53ee4f39449a981a84b59e3d26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

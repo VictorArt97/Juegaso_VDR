@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class caballero_Main : MonoBehaviour
 {
@@ -13,10 +14,14 @@ public class caballero_Main : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform vistaCercana;
 
+    [SerializeField] private Image cargaUltiVisual;
+
+    public float cargaulti;
+
     private Vector3 posicionInicial;
+
     
-    
-    
+
     private void OnEnable()
     {
         animator = GetComponent<Animator>();   // obtengo el animator 
@@ -26,6 +31,8 @@ public class caballero_Main : MonoBehaviour
     
     public void Update()
     {
+        cargaulti = caballero.barraUlti;
+        cargaUltiVisual.fillAmount = caballero.barraUlti/caballero.maxBarraUlti;
         Debug.Log("Acciones :" + accionesDisponibles);                                     // Para comprobar cuantas acciones me quedan 
         if (caballero.vida > caballero.vidaMaxima) caballero.vida = caballero.vidaMaxima; // evitar que su vida sobrepase su vida maxima
                                                                                           
