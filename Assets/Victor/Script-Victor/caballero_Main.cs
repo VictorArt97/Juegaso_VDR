@@ -5,34 +5,43 @@ using UnityEngine;
 public class caballero_Main : MonoBehaviour
 {
     [SerializeField] DatosPersonaje caballero;
-    private int accionesDisponibles = 3;            // Ejemplo de barra de acciones
+    private int accionesDisponibles = 3;   // numero de acciones por turno    ( tengo que hacer que obtenga el dato de otro script para evitar lios )
     private Animator animator;
 
+    [SerializeField] private float boostDanio;
+    [SerializeField] private float boostDefensa;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform vistaCercana;
+
+    private Vector3 posicionInicial;
+    
+    
+    
     private void OnEnable()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();   // obtengo el animator 
+        mainCamera = GetComponent<Camera>();  //  obtengo la camara para poder transportarla al punto de camara nuevo para que se aprecie al personaje 
+        posicionInicial= mainCamera.transform.position;
     }
-
-
-    // Para comprobar cuantas acciones me quedan 
+    
     public void Update()
     {
-        Debug.Log("Acciones :" + accionesDisponibles);
-        if (caballero.vida > caballero.vidaMaxima) caballero.vida = caballero.vidaMaxima;     // evitar que su vida sobrepase su vida maxima 
+        Debug.Log("Acciones :" + accionesDisponibles);                                     // Para comprobar cuantas acciones me quedan 
+        if (caballero.vida > caballero.vidaMaxima) caballero.vida = caballero.vidaMaxima; // evitar que su vida sobrepase su vida maxima
+                                                                                          
     }
 
-
-
-    /// metodo que representa la habilidad 1 del caballero
-  //  public void Habilidad_1(Vector2Int posicionAtaque, GameObject enemigo)   // ataque a mele en un rango de 1x1
+      /// metodo que representa la habilidad 1 del caballero
+  
+    //  public void Habilidad_1(Vector2Int posicionAtaque, GameObject enemigo)   // ataque a mele en un rango de 1x1
     public void Habilidad_1()   // ataque a mele en un rango de 1x1
     {
         /// Comprobar acciones disponibles
         if (accionesDisponibles > 0)
         {
 
-            /// Seleccionar a quien atacar en el área de ataque (1x1)
-
+             /// Seleccionar a quien atacar en el área de ataque (1x1)
+            //(   )
 
             /// Reducir acciones
             accionesDisponibles -= 1;
@@ -44,8 +53,8 @@ public class caballero_Main : MonoBehaviour
 
             /// Cargar barra de ultimate
 
-            caballero.barraUlti += 15; // Ejemplo de carga
-            if (caballero.barraUlti > caballero.maxBarraUlti) caballero.barraUlti = caballero.maxBarraUlti;  // para evitar 
+            caballero.barraUlti += 15;
+            if (caballero.barraUlti > caballero.maxBarraUlti) caballero.barraUlti = caballero.maxBarraUlti;  // para evitar que la barra de ulti se buggee
 
             /// Comprobar si el enemigo ha muerto
             // if (enemigo.GetComponent<Enemigo>().)   // comprueba que el enemigo esta muerto
@@ -67,7 +76,10 @@ public class caballero_Main : MonoBehaviour
     {
         if (caballero.barraUlti == caballero.maxBarraUlti)
         {
-
+            mainCamera.transform.position = vistaCercana.transform.position;
+            animator.SetTrigger("Ulti");
+            caballero.danio += boostDanio;       // aumento del daño 
+            caballero.defensa += boostDefensa;  // aumento de defensa
         }
         else
         {

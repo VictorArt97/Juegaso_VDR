@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 800890668121186126}
   - component: {fileID: 1247423939767144471}
   - component: {fileID: 8324502676124999203}
+  - component: {fileID: 713412251535165336}
   m_Layer: 0
   m_Name: Knight_Visual
   m_TagString: Untagged
@@ -67,6 +68,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &713412251535165336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24353621457602036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278fd6073a3d8fd4c96bce2501d8f846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
 --- !u!1 &46473287875074474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3650,7 +3664,6 @@ GameObject:
   - component: {fileID: 6152385391357286429}
   - component: {fileID: 8225978833973117650}
   - component: {fileID: 6148197944191541343}
-  - component: {fileID: 4391254042081270440}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -3732,19 +3745,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4391254042081270440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855149001101649055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 278fd6073a3d8fd4c96bce2501d8f846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  caballero: {fileID: 11400000, guid: bc8fab91105d5754cb990e3f9e305f00, type: 2}
 --- !u!1 &1869124352984254073
 GameObject:
   m_ObjectHideFlags: 0
