@@ -28,7 +28,7 @@ public class Tablero : MonoBehaviour
     private Vector2Int currentHover;
     private Vector3 bounds;
 
-     public Color hovercolor;
+    public Color hovercolor;
     private Color colorInicial;
 
     [Header("Prefabs y materiales")]
@@ -40,7 +40,7 @@ public class Tablero : MonoBehaviour
 
 
     private Pieza piezaArrastrada;
- 
+
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class Tablero : MonoBehaviour
 
         //spwanearUnaSolaPieza(tipoPieza.peon, 0);
 
-        
+
         spawnearTodasLasPiezas();
 
         ColocarTodasLasPiezas();
@@ -64,8 +64,8 @@ public class Tablero : MonoBehaviour
             return;
         }
 
-       
-      
+
+
 
         RaycastHit info;
         Ray ray = camaraActual.ScreenPointToRay(Input.mousePosition);
@@ -81,17 +81,16 @@ public class Tablero : MonoBehaviour
                 casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
             }
             //esto ocurre cuando pasamos de una casilla a otra
-            if (currentHover != -Vector2Int.one)
+            if (currentHover != hitPosition)
             {
                 casillas[currentHover.x, currentHover.y].GetComponent<Renderer>().material = materialCasilla;
-                casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-
+                casillas[currentHover.x, currentHover.y].layer = (contieneUnMovimientoValido(ref movimientosDisponibles, currentHover)) ? LayerMask.NameToLayer("Iluminado") : LayerMask.NameToLayer("Casilla");
 
                 currentHover = hitPosition;
 
                 casillas[hitPosition.x, hitPosition.y].layer = LayerMask.NameToLayer("Hover");
                 casillas[hitPosition.x, hitPosition.y].GetComponent<Renderer>().material = materialSeleccion;
-             
+
             }
 
 
@@ -114,7 +113,7 @@ public class Tablero : MonoBehaviour
             }
             if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
-                
+
 
                 Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
 
@@ -125,16 +124,16 @@ public class Tablero : MonoBehaviour
                     piezaArrastrada = null;
 
                 }
-        
+
                 piezaArrastrada = null;
                 QutarIluminarCasillas();
             }
             else
             {
-                //if (currentHover != -Vector2Int.one)
+              //  if (currentHover != -Vector2Int.one)
                 //{
-                //    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
-                //    currentHover = -Vector2Int.one;
+                 //   casillas[currentHover.x, currentHover.y].layer = (contieneUnMovimientoValido(ref movimientosDisponibles, currentHover))? LayerMask.NameToLayer("Iluminado") : LayerMask.NameToLayer("Casilla");
+                  //  currentHover = -Vector2Int.one;
 
                 //}
 
@@ -154,7 +153,7 @@ public class Tablero : MonoBehaviour
             //Debug.Log("Hola!");
             //if (currentHover != Vector2Int.one)
             //{
-                
+
             //    casillas[currentHover.x, currentHover.y].layer = LayerMask.NameToLayer("Casilla");
 
             //    currentHover = Vector2Int.one;
@@ -176,15 +175,20 @@ public class Tablero : MonoBehaviour
         for (int i = 0; i < movimientosDisponibles.Count; i++)
         {
             casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].layer = LayerMask.NameToLayer("Casilla");
-            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].GetComponent<Renderer>().material = materialCasilla; 
+            casillas[movimientosDisponibles[i].x, movimientosDisponibles[i].y].GetComponent<Renderer>().material = materialCasilla;
         }
     }
 
     private bool MoverA(Pieza piezaAMover, int x, int y)
     {
+        if(!contieneUnMovimientoValido(ref movimientosDisponibles, new Vector2(x, y)))
+        { 
+            return false;
+        }
+
         if (piezasEnTablero[x, y] != null) //Si hay pieza en donde pretendo mover...
         {
-            Pieza piezaEnCasilla = piezasEnTablero[x,y]; //Obtén información de esa pieza
+            Pieza piezaEnCasilla = piezasEnTablero[x, y]; //Obtén información de esa pieza
 
             if (piezaAMover.equipo == piezaEnCasilla.equipo) //Y si es de mi equipo. no puedo moverme.
             {
@@ -208,7 +212,7 @@ public class Tablero : MonoBehaviour
     }
 
     //Tablero
-    private void GenerarTodasLasCasillas(float tamanioCasilla, int contadorCasillasX, int contadorCasillasY  )
+    private void GenerarTodasLasCasillas(float tamanioCasilla, int contadorCasillasX, int contadorCasillasY)
     {
 
         yOffset += transform.position.y;
@@ -221,7 +225,7 @@ public class Tablero : MonoBehaviour
             {
                 casillas[X, y] = GenerarUnaCasilla(tamanioCasilla, X, y);
             }
-            
+
         }
     }
 
@@ -235,14 +239,14 @@ public class Tablero : MonoBehaviour
         objetoCasilla.AddComponent<MeshRenderer>().material = materialCasilla;
 
         Vector3[] vertices = new Vector3[4];
-        vertices[0] = new Vector3(x* tamanioCasilla, yOffset, y*tamanioCasilla) - bounds;
-        vertices[1] = new Vector3(x* tamanioCasilla, yOffset, (y+1)*tamanioCasilla) - bounds;
-        vertices[2] = new Vector3((x+1)* tamanioCasilla, yOffset, y*tamanioCasilla) - bounds;
-        vertices[3] = new Vector3((x+1)* tamanioCasilla, yOffset, (y+1)*tamanioCasilla) - bounds;
+        vertices[0] = new Vector3(x * tamanioCasilla, yOffset, y * tamanioCasilla) - bounds;
+        vertices[1] = new Vector3(x * tamanioCasilla, yOffset, (y + 1) * tamanioCasilla) - bounds;
+        vertices[2] = new Vector3((x + 1) * tamanioCasilla, yOffset, y * tamanioCasilla) - bounds;
+        vertices[3] = new Vector3((x + 1) * tamanioCasilla, yOffset, (y + 1) * tamanioCasilla) - bounds;
 
-        int[] tris = new int[]{0, 1, 2, 1, 3, 2};
+        int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
 
-        mesh.vertices = vertices; 
+        mesh.vertices = vertices;
         mesh.triangles = tris;
 
         objetoCasilla.layer = LayerMask.NameToLayer("Casilla");
@@ -250,89 +254,101 @@ public class Tablero : MonoBehaviour
         objetoCasilla.AddComponent<BoxCollider>();
 
         return objetoCasilla;
-        
+
     }
 
-private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
-{
-    for(int x = 0 ; x < Total_Casillas_X ; x++)
+    private Vector2Int MirarInformacionCasilla(GameObject hitInfo)
     {
-        for (int y = 0; y < Total_Casillas_Y; y++)
+        for (int x = 0; x < Total_Casillas_X; x++)
         {
-            if(casillas[x,y] == hitInfo)
+            for (int y = 0; y < Total_Casillas_Y; y++)
             {
-                return new Vector2Int(x,y);
+                if (casillas[x, y] == hitInfo)
+                {
+                    return new Vector2Int(x, y);
+                }
+            }
+        }
+        return -Vector2Int.one; //invalido
+    }
+
+
+    //Spawnear Piezas
+
+    private void spawnearTodasLasPiezas()
+    {
+        piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
+
+        int equipoRosa = 0, equipoAzul = 1;
+
+        //equipo rosa
+
+        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
+        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
+        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
+        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
+        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipoRosa);
+        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipoAzul);
+
+    }
+    private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
+    {
+        GameObject piezaGO = Instantiate(prefabs[(int)tipo - 1], Vector3.zero, Quaternion.identity);
+        piezaGO.transform.SetParent(transform);
+        Pieza pieza = piezaGO.GetComponent<Pieza>();
+
+        pieza.tipo = tipo;
+        pieza.equipo = equipo;
+        pieza.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
+
+        return pieza;
+    }
+
+
+    //colocar piezas
+    private void ColocarTodasLasPiezas()
+    {
+        for (int x = 0; x < Total_Casillas_X; x++)
+        {
+            for (int y = 0; y < Total_Casillas_Y; y++)
+            {
+                if (piezasEnTablero[x, y] != null)
+                {
+                    ColocarUnaPieza(x, y, true);
+                }
             }
         }
     }
-    return -Vector2Int.one; //invalido
-}
- 
 
-//Spawnear Piezas
-
-private void spawnearTodasLasPiezas()
-{
-    piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
-
-    int equipoRosa = 0, equipoAzul = 1;
-
-    //equipo rosa
-
-    piezasEnTablero[0,0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-    piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-    piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-    piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
-
-    }
-private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
-{
-    GameObject piezaGO = Instantiate(prefabs[(int)tipo -1], Vector3.zero, Quaternion.identity);
-    piezaGO.transform.SetParent(transform);
-    Pieza pieza = piezaGO.GetComponent<Pieza>();
-
-    pieza.tipo = tipo;
-    pieza.equipo = equipo;
-    pieza.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
-
-    return pieza;
-}
-
-
-//colocar piezas
-private void ColocarTodasLasPiezas()
-{
-    for(int x = 0; x < Total_Casillas_X; x++)
+    private Vector3 CentroCasilla(int x, int y)
     {
-        for(int y = 0; y < Total_Casillas_Y; y++)
+        return new Vector3(x * tamanioCasilla, yOffset, y * tamanioCasilla) - bounds + new Vector3(tamanioCasilla / 2, 0, tamanioCasilla / 2);
+    }
+
+    private void ColocarUnaPieza(int x, int y, bool force = false)
+    {
+        piezasEnTablero[x, y].xActual = x;
+        piezasEnTablero[x, y].yActual = y;
+        piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
+    }
+
+
+
+    private bool contieneUnMovimientoValido(ref List<Vector2Int> movimientos, Vector2 pos)
+    {
+        for (int i = 0; i < movimientos.Count; i++)
         {
-            if(piezasEnTablero[x,y] != null)
+            if (movimientos[i].x == pos.x && movimientos[i].y == pos.y)
             {
-                ColocarUnaPieza(x, y, true);
+                return true;
             }
         }
+        return false;
+
     }
-}
-
-private Vector3 CentroCasilla(int x, int y)
-    {
-        return new Vector3(x* tamanioCasilla, yOffset, y * tamanioCasilla)-bounds + new Vector3(tamanioCasilla/2,0, tamanioCasilla /2);
-    }
-
-private void ColocarUnaPieza(int x, int y, bool force = false)
-{
-    piezasEnTablero[x,y].xActual = x;
-    piezasEnTablero[x,y].yActual = y;
-    piezasEnTablero[x, y].setPosition(CentroCasilla(x, y), force);
-}
-
-
-
-//private bool contieneUnMovimientoValido(ref)
-
 }
 
 //VIDEO 3/5 ELIMINAR PIEZAS MUERTAS IGNORADO REVISAR MAS ADELANTE 

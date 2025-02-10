@@ -29,7 +29,7 @@ public class Pieza : MonoBehaviour
        transform.localScale = Vector3.Lerp(transform.localScale, desiredScale, Time.deltaTime * 10);
     }
 
-    public List<Vector2Int> GetMovimientosDisponibles(ref Pieza[,] tablero, int cuentaCasillasX, int cuentaCasillasY)
+    public virtual List<Vector2Int> GetMovimientosDisponibles(ref Pieza[,] tablero, int cuentaCasillasX, int cuentaCasillasY)
     {
         List<Vector2Int> r = new List<Vector2Int>();
         r.Add(new Vector2Int(3,3));
