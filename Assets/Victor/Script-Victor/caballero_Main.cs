@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,9 +27,13 @@ public class caballero_Main : MonoBehaviour
     {
         animator = GetComponent<Animator>();   // obtengo el animator 
         mainCamera = GetComponent<Camera>();  //  obtengo la camara para poder transportarla al punto de camara nuevo para que se aprecie al personaje 
-        posicionInicial= mainCamera.transform.position;
+        
     }
-    
+    private void Awake()
+    {
+        posicionInicial = mainCamera.transform.position;
+    }
+
     public void Update()
     {
         cargaulti = caballero.barraUlti;
@@ -55,7 +60,7 @@ public class caballero_Main : MonoBehaviour
 
             /// Activar animación de ataque y recibir daño
             AnimacionAtaque();
-            // enemigo.GetComponent<Enemigo>().RecibirDaño();  // daño al enemigo
+            // enemigo.GetComponent<Enemigo>().RecibirDanio();  // obtengo el componente del enemigo que seria el script de caballero y ejecutar el metodo de recibir danio metiendo 
 
 
             /// Cargar barra de ultimate
@@ -68,6 +73,7 @@ public class caballero_Main : MonoBehaviour
             //  {
             //    OcuparCasilla();    // ocupa la casilla del enemigo que acaba de matar
             // }
+            
             else
             {
                 return; // basicamente no se mueve (Solo en caso de que sea un ataque fisico)
@@ -94,21 +100,28 @@ public class caballero_Main : MonoBehaviour
         }
     }
 
-    private void recibirDanio()
-    {
-
-    }
+   
     private void OcuparCasilla()
     {
 
     }
     private void AnimacionAtaque()  //el personaje se gira a mirar al enemigo y activa la animacion 
     {
-        // animator.SetBool("");
+        animator.SetTrigger("Atacando");
     }
 
 
+    private void RecibirDanio(float cantidadDanio)
+    {
+        float nuevaCantidadDanio;                 // cantidad de danio para despues de la recuccion de daño
+        nuevaCantidadDanio = cantidadDanio;                        // le doy valor con la cantidad de danio original
+        nuevaCantidadDanio -= caballero.defensa;          // al ataque que me va a hacer le resto la defensa, reduciendo el daño 
 
+        animator.SetTrigger("RecibiendoDanio");   // activar animacion de recibir daño
+
+        caballero.defensa -= cantidadDanio;             // se gasta la defensa , reduciendole el propio daño orginal que me iba a hacer         
+        caballero.vida -= nuevaCantidadDanio;            //  me hacen el daño ya reducido
+    }
 
 
     // --------------------------/// APUNTES ///-------------------------------//
@@ -116,6 +129,7 @@ public class caballero_Main : MonoBehaviour
 
 
     // preguntas para fernando : como puedo hacer para que se distinga al enemigo del jugador de la forma mas facil y acceda a sus datos
+    // cual de los 2 scripts de caballero main o de combate son mas utiles
 
 
 
