@@ -1085,6 +1085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507087276}
+  - component: {fileID: 1507087277}
   - component: {fileID: 1507087275}
   - component: {fileID: 1507087274}
   - component: {fileID: 1507087273}
@@ -1179,6 +1180,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1507087277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507087272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2821e59688b742d4ea111dfe1eb0fd0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1630018216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,7 +1643,9 @@ MonoBehaviour:
   - {fileID: 2739261500462956524, guid: 53cefd2f286f7ab4ca96788b20b5e7c6, type: 3}
   materialesEquipos:
   - {fileID: 2100000, guid: 2d379bba9be24b84085dcfb8c5cbba90, type: 2}
-  - {fileID: 2100000, guid: 67240d48d31b1df42b1750143529fe7f, type: 2}
+  - {fileID: 2100000, guid: b0593c53ee4f39449a981a84b59e3d26, type: 2}
+  - {fileID: 2100000, guid: d81071244836fcd40bbea88ccd23062e, type: 2}
+  - {fileID: 2100000, guid: b2c7e1042db2a974ba608ed94feb1eab, type: 2}
 --- !u!23 &4887430368389369619
 MeshRenderer:
   m_ObjectHideFlags: 0

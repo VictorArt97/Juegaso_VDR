@@ -91,7 +91,7 @@ public class caballero_Main : MonoBehaviour
         {
             mainCamera.transform.position = vistaCercana.transform.position;
             animator.SetTrigger("Ulti");
-            caballero.danio += boostDanio;       // aumento del daño 
+            caballero.ulti.damage += boostDanio;       // aumento del daño 
             caballero.defensa += boostDefensa;  // aumento de defensa
         }
         else

@@ -85,6 +85,8 @@ MonoBehaviour:
   boostDefensa: 0
   mainCamera: {fileID: 0}
   vistaCercana: {fileID: 0}
+  cargaUltiVisual: {fileID: 0}
+  cargaulti: 0
 --- !u!1 &46473287875074474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3707,6 +3709,10 @@ MonoBehaviour:
   tipo: 0
   xActual: 0
   yActual: 0
+  partesPrincipales:
+  - {fileID: 5316059220850670446}
+  partesSecundarias:
+  - {fileID: 5159590142252399908}
 --- !u!23 &6148197944191541343
 MeshRenderer:
   m_ObjectHideFlags: 0

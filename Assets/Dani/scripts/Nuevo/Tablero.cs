@@ -40,10 +40,24 @@ public class Tablero : MonoBehaviour
 
 
     private Pieza piezaArrastrada;
+    private Pieza ultimaPiezaSeleccionada;
 
+    public static Tablero instance;
+
+    public Pieza UltimaPiezaSeleccionada { get => ultimaPiezaSeleccionada; }
 
     private void Awake()
     {
+
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         GenerarTodasLasCasillas(tamanioCasilla, Total_Casillas_X, Total_Casillas_Y);
 
         //RECORDAR COMENTAR LA SIGUIENTE LINEA
@@ -51,7 +65,7 @@ public class Tablero : MonoBehaviour
         //spwanearUnaSolaPieza(tipoPieza.peon, 0);
 
 
-        spawnearTodasLasPiezas();
+        spawnearTodasLasPiezas(UnityEngine.Random.Range(0, 2));
 
         ColocarTodasLasPiezas();
 
@@ -113,6 +127,7 @@ public class Tablero : MonoBehaviour
             }
             if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
+                ultimaPiezaSeleccionada = piezaArrastrada;
 
 
                 Vector2Int posicionAnterior = new Vector2Int(piezaArrastrada.xActual, piezaArrastrada.yActual);
@@ -124,7 +139,6 @@ public class Tablero : MonoBehaviour
                     piezaArrastrada = null;
 
                 }
-
                 piezaArrastrada = null;
                 QutarIluminarCasillas();
             }
@@ -275,26 +289,35 @@ public class Tablero : MonoBehaviour
 
     //Spawnear Piezas
 
-    private void spawnearTodasLasPiezas()
+    private void spawnearTodasLasPiezas(int equipo)
     {
         piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
 
-        int equipoRosa = 0, equipoAzul = 1;
+        Material baseMaterial = null;
+        Material secondaryMaterial = null;
+        if(equipo == 0)
+        {
+            baseMaterial = materialesEquipos[0];
+            secondaryMaterial = materialesEquipos[1];
+        }
+        else
+        {
+            baseMaterial = materialesEquipos[2];
+            secondaryMaterial = materialesEquipos[3];
+        }
 
-        //equipo rosa
-
-        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torre, equipoRosa);
-        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipoRosa);
-        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipoRosa);
-        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipoRosa);
-        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipoRosa);
-        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipoAzul);
+        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torre, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipo, baseMaterial, secondaryMaterial);
 
     }
-    private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo)
+    private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo, Material baseMaterial, Material secondaryMaterial)
     {
         GameObject piezaGO = Instantiate(prefabs[(int)tipo - 1], Vector3.zero, Quaternion.identity);
         piezaGO.transform.SetParent(transform);
@@ -302,7 +325,15 @@ public class Tablero : MonoBehaviour
 
         pieza.tipo = tipo;
         pieza.equipo = equipo;
-        pieza.GetComponent<MeshRenderer>().material = materialesEquipos[equipo];
+        foreach (MeshRenderer parte in pieza.PartesPrincipales)
+        {
+            parte.material = baseMaterial;
+        }
+        foreach(MeshRenderer parteSec in pieza.PartesSecundarias)
+        {
+            parteSec.material = secondaryMaterial;
+        }
+       
 
         return pieza;
     }

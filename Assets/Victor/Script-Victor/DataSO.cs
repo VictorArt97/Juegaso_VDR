@@ -12,8 +12,10 @@ public class DatosPersonaje : ScriptableObject
     public float defensa;
     public float defensaMaxima;
     public bool vivo;
-    
-    public float danio;
+
+    public AbilitySO ability1;
+    public AbilitySO ability2;
+    public AbilitySO ulti;
 
     public float barraUlti ;                   
     public float maxBarraUlti;             

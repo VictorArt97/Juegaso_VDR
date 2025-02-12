@@ -22,6 +22,20 @@ public class Pieza : MonoBehaviour
     private Vector3 posicionDeseada;
     private Vector3 desiredScale = Vector3.one ;
 
+    [SerializeField]
+    private MeshRenderer[] partesPrincipales;
+
+    [SerializeField]
+    private MeshRenderer[] partesSecundarias;
+
+    [SerializeField]
+    private DatosPersonaje datos;
+
+
+
+    public MeshRenderer[] PartesPrincipales { get => partesPrincipales;  }
+    public MeshRenderer[] PartesSecundarias { get => partesSecundarias; }
+    public DatosPersonaje Datos { get => datos; }
 
     private void Update()
     {
