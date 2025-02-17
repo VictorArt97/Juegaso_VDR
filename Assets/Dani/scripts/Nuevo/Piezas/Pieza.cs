@@ -5,11 +5,18 @@ using UnityEngine;
 public enum tipoPieza
 {
     ninguna = 0,
-    peon = 1,
-    torre =2,
-    caballero =3,
-    alfil=4,
-    reina=5,
+    peonRosa = 1,
+    torreRosa = 2,
+    caballeroRosa = 3,
+    alfilRosa = 4,
+    reinaRosa = 5,
+    
+    
+    peonAzul = 1,
+    torreAzul =2,
+    caballeroAzul =3,
+    alfilAzul=4,
+    reinaAzul=5,
 }
 
 public class Pieza : MonoBehaviour

@@ -306,15 +306,15 @@ public class Tablero : MonoBehaviour
             secondaryMaterial = materialesEquipos[3];
         }
 
-        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torre, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfil, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfil, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballero, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reina, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peon, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torreRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfilRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfilRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reinaRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peonRosa, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peonAzul, equipo, baseMaterial, secondaryMaterial);
 
     }
     private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo, Material baseMaterial, Material secondaryMaterial)
