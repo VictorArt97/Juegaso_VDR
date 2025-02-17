@@ -10117,6 +10117,7 @@ GameObject:
   - component: {fileID: 2223520013256255082}
   - component: {fileID: 8207854416351875922}
   - component: {fileID: 7164064139505115215}
+  - component: {fileID: 5180674776332877236}
   m_Layer: 0
   m_Name: Pawn_NormalType Rosa
   m_TagString: Untagged
@@ -10152,7 +10153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061d0bc2683c73d4381e40eb2a12de0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipo: 0
+  equipo: 1
   tipo: 6
   xActual: 0
   yActual: 0
@@ -10201,6 +10202,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5180674776332877236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562233968936476561}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961c797fd84c88343b53b23c05075ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipo: 1
+  tipo: 6
+  xActual: 0
+  yActual: 0
+  partesPrincipales: []
+  partesSecundarias: []
+  datos: {fileID: 0}
 --- !u!1 &7582048658256233192
 GameObject:
   m_ObjectHideFlags: 0

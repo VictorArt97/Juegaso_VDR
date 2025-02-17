@@ -4812,7 +4812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfee936fd628d6408e4331bcf13d25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipo: 0
+  equipo: 1
   tipo: 10
   xActual: 0
   yActual: 0

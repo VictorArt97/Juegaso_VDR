@@ -315,7 +315,13 @@ public class Tablero : MonoBehaviour
         piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reinaRosa, equipo, baseMaterial, secondaryMaterial);
         piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peonRosa, equipo, baseMaterial, secondaryMaterial);
         piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peonAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[8, 6] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 11] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 0] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 3] = spwanearUnaSolaPieza(tipoPieza.alfilAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 9] = spwanearUnaSolaPieza(tipoPieza.alfilAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 5] = spwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 7] = spwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipo, baseMaterial, secondaryMaterial);
+        //piezasEnTablero[11, 6] = spwanearUnaSolaPieza(tipoPieza.reinaAzul, equipo, baseMaterial, secondaryMaterial);
 
     }
     private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo, Material baseMaterial, Material secondaryMaterial)

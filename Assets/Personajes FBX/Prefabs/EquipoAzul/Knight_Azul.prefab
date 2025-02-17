@@ -3705,7 +3705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64747ac21ce6f4a49969ef26f2fa9498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipo: 0
+  equipo: 1
   tipo: 8
   xActual: 0
   yActual: 0

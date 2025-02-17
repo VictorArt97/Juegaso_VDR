@@ -3709,10 +3709,8 @@ MonoBehaviour:
   tipo: 3
   xActual: 0
   yActual: 0
-  partesPrincipales:
-  - {fileID: 5316059220850670446}
-  partesSecundarias:
-  - {fileID: 5159590142252399908}
+  partesPrincipales: []
+  partesSecundarias: []
   datos: {fileID: 0}
 --- !u!23 &6148197944191541343
 MeshRenderer:
