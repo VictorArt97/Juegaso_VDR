@@ -10,13 +10,12 @@ public enum tipoPieza
     caballeroRosa = 3,
     alfilRosa = 4,
     reinaRosa = 5,
-    
-    
-    peonAzul = 1,
-    torreAzul =2,
-    caballeroAzul =3,
-    alfilAzul=4,
-    reinaAzul=5,
+      
+    peonAzul = 6,
+    torreAzul =7,
+    caballeroAzul =8,
+    alfilAzul=9,
+    reinaAzul=10,
 }
 
 public class Pieza : MonoBehaviour

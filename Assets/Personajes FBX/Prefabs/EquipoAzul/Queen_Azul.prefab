@@ -3008,14 +3008,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695362776390316309}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.058458, y: 0.058458, z: 0.058458}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8769063437876450252}
   m_Father: {fileID: 77667213788581304}
-  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!114 &7305543846034349196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 3411364433225176664}
   - component: {fileID: 2735596111413613759}
   m_Layer: 0
-  m_Name: Queen
+  m_Name: Queen_Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4813,7 +4813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipo: 0
-  tipo: 0
+  tipo: 10
   xActual: 0
   yActual: 0
   partesPrincipales: []

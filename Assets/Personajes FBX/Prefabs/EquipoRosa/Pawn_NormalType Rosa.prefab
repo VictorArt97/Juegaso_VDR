@@ -10153,9 +10153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipo: 0
-  tipo: 0
+  tipo: 1
   xActual: 0
   yActual: 0
+  partesPrincipales: []
+  partesSecundarias: []
+  datos: {fileID: 0}
 --- !u!23 &7164064139505115215
 MeshRenderer:
   m_ObjectHideFlags: 0

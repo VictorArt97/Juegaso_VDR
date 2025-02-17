@@ -315,6 +315,7 @@ public class Tablero : MonoBehaviour
         piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reinaRosa, equipo, baseMaterial, secondaryMaterial);
         piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peonRosa, equipo, baseMaterial, secondaryMaterial);
         piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peonAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[8, 6] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
 
     }
     private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo, Material baseMaterial, Material secondaryMaterial)
