@@ -38,6 +38,9 @@ public class Tablero : MonoBehaviour
     private List<Vector2Int> movimientosDisponibles = new List<Vector2Int>();
 
 
+    private bool esTurnoRosa;
+
+
 
     private Pieza piezaArrastrada;
     private Pieza ultimaPiezaSeleccionada;
@@ -48,6 +51,7 @@ public class Tablero : MonoBehaviour
 
     private void Awake()
     {
+        esTurnoRosa = true;
 
         if(instance == null)
         {
@@ -114,7 +118,7 @@ public class Tablero : MonoBehaviour
                 if (piezasEnTablero[hitPosition.x, hitPosition.y] != null)
                 {
                     //es nuestro turno o no?
-                    if (true)
+                    if ((piezasEnTablero[hitPosition.x, hitPosition.y].equipo == 0 && esTurnoRosa) || (piezasEnTablero[hitPosition.x, hitPosition.y].equipo == 1 && !esTurnoRosa))
                     {
                         piezaArrastrada = piezasEnTablero[hitPosition.x, hitPosition.y];
 
@@ -202,25 +206,36 @@ public class Tablero : MonoBehaviour
 
         if (piezasEnTablero[x, y] != null) //Si hay pieza en donde pretendo mover...
         {
-            Pieza piezaEnCasilla = piezasEnTablero[x, y]; //Obtén información de esa pieza
+            Pieza piezaEnCasilla = piezasEnTablero[x, y]; //Obtï¿½n informaciï¿½n de esa pieza
 
             if (piezaAMover.equipo == piezaEnCasilla.equipo) //Y si es de mi equipo. no puedo moverme.
             {
                 return false;
+            }
+            //que pasa cuando mueren las piezas
+            if(piezaAMover.equipo == 0)
+            {
+
+            }
+            else
+            {
+
             }
         }
 
 
         Vector2Int posicionAnterior = new Vector2Int(piezaAMover.xActual, piezaAMover.yActual);
 
-        //Actualizo la posición de mi pieza a la coordenada x, y.
+        //Actualizo la posiciï¿½n de mi pieza a la coordenada x, y.
         piezasEnTablero[x, y] = piezaAMover;
 
-        //Dejo mi posición en nulo.
+        //Dejo mi posiciï¿½n en nulo.
         piezasEnTablero[posicionAnterior.x, posicionAnterior.y] = null;
 
         //la coloco en la nueva coordenada.
         ColocarUnaPieza(x, y);
+
+        esTurnoRosa = !esTurnoRosa;
 
         return true;
     }
@@ -293,38 +308,30 @@ public class Tablero : MonoBehaviour
     {
         piezasEnTablero = new Pieza[Total_Casillas_X, Total_Casillas_Y];
 
-        Material baseMaterial = null;
-        Material secondaryMaterial = null;
-        if(equipo == 0)
-        {
-            baseMaterial = materialesEquipos[0];
-            secondaryMaterial = materialesEquipos[1];
-        }
-        else
-        {
-            baseMaterial = materialesEquipos[2];
-            secondaryMaterial = materialesEquipos[3];
-        }
+        int equipoRosa = 0, equipoAzul = 1;
 
-        piezasEnTablero[0, 0] = spwanearUnaSolaPieza(tipoPieza.torreRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 11] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 3] = spwanearUnaSolaPieza(tipoPieza.alfilRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 9] = spwanearUnaSolaPieza(tipoPieza.alfilRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 5] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 7] = spwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[0, 6] = spwanearUnaSolaPieza(tipoPieza.reinaRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[1, 6] = spwanearUnaSolaPieza(tipoPieza.peonRosa, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[10, 6] = spwanearUnaSolaPieza(tipoPieza.peonAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 11] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 0] = spwanearUnaSolaPieza(tipoPieza.torreAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 3] = spwanearUnaSolaPieza(tipoPieza.alfilAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 9] = spwanearUnaSolaPieza(tipoPieza.alfilAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 5] = spwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipo, baseMaterial, secondaryMaterial);
-        piezasEnTablero[11, 7] = spwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipo, baseMaterial, secondaryMaterial);
+
+
+
+        piezasEnTablero[0, 0] = SpwanearUnaSolaPieza(tipoPieza.torreRosa, equipoRosa );
+        piezasEnTablero[0, 11] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa );
+        piezasEnTablero[0, 3] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa);
+        piezasEnTablero[0, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa );
+        piezasEnTablero[0, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa );
+        piezasEnTablero[0, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa);
+        piezasEnTablero[0, 6] = SpwanearUnaSolaPieza(tipoPieza.reinaRosa, equipoRosa);
+        piezasEnTablero[1, 6] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[10, 6] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
+        piezasEnTablero[11, 11] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
+        piezasEnTablero[11, 0] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
+        piezasEnTablero[11, 3] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
+        piezasEnTablero[11, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
+        piezasEnTablero[11, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
+        piezasEnTablero[11, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
         //piezasEnTablero[11, 6] = spwanearUnaSolaPieza(tipoPieza.reinaAzul, equipo, baseMaterial, secondaryMaterial);
 
     }
-    private Pieza spwanearUnaSolaPieza(tipoPieza tipo, int equipo, Material baseMaterial, Material secondaryMaterial)
+    private Pieza SpwanearUnaSolaPieza(tipoPieza tipo, int equipo)
     {
         GameObject piezaGO = Instantiate(prefabs[(int)tipo - 1], Vector3.zero, Quaternion.identity);
         piezaGO.transform.SetParent(transform);
@@ -332,14 +339,8 @@ public class Tablero : MonoBehaviour
 
         pieza.tipo = tipo;
         pieza.equipo = equipo;
-        foreach (MeshRenderer parte in pieza.PartesPrincipales)
-        {
-            parte.material = baseMaterial;
-        }
-        foreach(MeshRenderer parteSec in pieza.PartesSecundarias)
-        {
-            parteSec.material = secondaryMaterial;
-        }
+        
+       
        
 
         return pieza;
