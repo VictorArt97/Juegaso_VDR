@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public enum tipoPieza
 {
     ninguna = 0,
@@ -22,6 +24,9 @@ public class Pieza : MonoBehaviour
 {
     public int equipo;
     public tipoPieza tipo;
+
+    public bool esElRey;
+
     public int xActual;
     public int yActual;
 
