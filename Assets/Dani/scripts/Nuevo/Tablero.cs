@@ -7,6 +7,14 @@ using UnityEngine.UIElements;
 
 public class Tablero : MonoBehaviour
 {
+    [SerializeField] private GameObject virtualCameraEquipoRosa;
+    [SerializeField] private  GameObject virtualCameraEquipoAzul;
+    [SerializeField] private GameObject zoomRosa;
+    [SerializeField] private  GameObject zoomAzul;
+
+    private bool zoom = false;
+
+
 
     private Pieza[,] piezasEnTablero;
     private Renderer rend;
@@ -76,10 +84,57 @@ public class Tablero : MonoBehaviour
     }
     private void Update()
     {
+        if(Input.GetMouseButtonDown(1) && zoom == false)
+        {
+            zoom = true;
+        }
+          if(Input.GetMouseButtonDown(1) && zoom == true)
+        {
+            zoom = false;
+        }
+    
+
+
         if (!camaraActual)
         {
             camaraActual = Camera.main;
             return;
+        }
+        if(esTurnoRosa == true)
+        {
+            if(zoom == false)
+            {
+                virtualCameraEquipoRosa.SetActive(true);
+                virtualCameraEquipoAzul.SetActive(false);
+                zoomAzul.SetActive(false);
+                zoomRosa.SetActive(false);
+            }
+            if(zoom == true)
+            {
+                virtualCameraEquipoRosa.SetActive(false);
+                virtualCameraEquipoAzul.SetActive(false);
+                zoomAzul.SetActive(false);
+                zoomRosa.SetActive(true);
+            }
+
+          
+        }
+        if(esTurnoRosa == false)
+        {
+             if(zoom == false)
+            {
+                virtualCameraEquipoRosa.SetActive(false);
+                virtualCameraEquipoAzul.SetActive(true);
+                zoomAzul.SetActive(false);
+                zoomRosa.SetActive(false);
+            }
+            if(zoom == true)
+            {
+                virtualCameraEquipoRosa.SetActive(false);
+                virtualCameraEquipoAzul.SetActive(false);
+                zoomAzul.SetActive(true);
+                zoomRosa.SetActive(false);
+            }
         }
 
 
@@ -126,11 +181,27 @@ public class Tablero : MonoBehaviour
                         //consigue una lista de a donde se puede mover y cambia el color de las casillas
                         movimientosDisponibles = piezaArrastrada.GetMovimientosDisponibles(ref piezasEnTablero, Total_Casillas_X, Total_Casillas_Y);
                         iluminarCasillas();
+                        if(esTurnoRosa == true)
+                        {
+                            virtualCameraEquipoRosa.SetActive(false);
+                            virtualCameraEquipoAzul.SetActive(false);
+                            zoomAzul.SetActive(false);
+                            zoomRosa.SetActive(true);
+                        }
+                           if(esTurnoRosa == false)
+                        {
+                            virtualCameraEquipoRosa.SetActive(false);
+                            virtualCameraEquipoAzul.SetActive(false);
+                            zoomAzul.SetActive(true);
+                            zoomRosa.SetActive(false);
+                        }
+
                     }
                 }
             }
             if (piezaArrastrada != null && Input.GetMouseButtonUp(0))
             {
+               
                 ultimaPiezaSeleccionada = piezaArrastrada;
 
 
