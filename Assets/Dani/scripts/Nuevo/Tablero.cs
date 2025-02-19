@@ -399,7 +399,7 @@ public class Tablero : MonoBehaviour
         piezasEnTablero[11, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
         piezasEnTablero[11, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
         piezasEnTablero[11, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
-        //piezasEnTablero[11, 6] = spwanearUnaSolaPieza(tipoPieza.reinaAzul, equipo, baseMaterial, secondaryMaterial);
+        piezasEnTablero[11, 6] = SpwanearUnaSolaPieza(tipoPieza.reinaAzul, equipoAzul);
 
     }
     private Pieza SpwanearUnaSolaPieza(tipoPieza tipo, int equipo)
