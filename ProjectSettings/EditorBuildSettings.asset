@@ -12,8 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Configuration_Screen_Scene.unity
     guid: 5213a12d84a4c3e4694c6ee56f9075f8
   - enabled: 1
+    path: Assets/Scenes/PantallaJuego.unity
+    guid: c5e2e053a3cd0ca419e987c8030d24bb
+  - enabled: 0
     path: Assets/Scenes/PantallaSeleccion.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/VictoriaAzul.unity
+    guid: edde4520ce8354e4489b180b3563b1ad
+  - enabled: 1
+    path: Assets/Scenes/VictoriaRosa.unity
+    guid: 46250259b7a77844b887aaa9d3c4b4f5
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: fbd94ecd199538b48a70d6f28b0c9187,
       type: 2}

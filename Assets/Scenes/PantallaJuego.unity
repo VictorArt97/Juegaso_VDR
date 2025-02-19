@@ -2679,6 +2679,8 @@ MonoBehaviour:
   virtualCameraEquipoAzul: {fileID: 192748326}
   zoomRosa: {fileID: 959950674}
   zoomAzul: {fileID: 1345252817}
+  tamanioMuerto: 0.1
+  espacioMuertas: 0.5
   materialCasilla: {fileID: 2100000, guid: bcdca846f35617f478abbd647bb3bd35, type: 2}
   materialSeleccion: {fileID: 2100000, guid: 3eab0aea04608be4da0052f9e14c1a2b, type: 2}
   materialIluminacion: {fileID: 2100000, guid: 3eab0aea04608be4da0052f9e14c1a2b, type: 2}

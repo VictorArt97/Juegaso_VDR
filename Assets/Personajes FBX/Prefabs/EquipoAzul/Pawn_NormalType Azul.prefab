@@ -10118,7 +10118,7 @@ GameObject:
   - component: {fileID: 8207854416351875922}
   - component: {fileID: 7164064139505115215}
   m_Layer: 0
-  m_Name: Pawn_NormalType Rosa
+  m_Name: Pawn_NormalType Azul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

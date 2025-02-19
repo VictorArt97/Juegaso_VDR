@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
@@ -18,6 +19,11 @@ public class Tablero : MonoBehaviour
 
     private Pieza[,] piezasEnTablero;
     private Renderer rend;
+
+    private List<Pieza> rosasMuertos = new List<Pieza>();
+    private List<Pieza> azulesMuertos = new List<Pieza>();
+    [SerializeField] private float tamanioMuerto;
+    [SerializeField] private float espacioMuertas;
 
     [SerializeField] private Material materialCasilla;
     [SerializeField] private Material materialSeleccion;
@@ -284,14 +290,28 @@ public class Tablero : MonoBehaviour
                 return false;
             }
             //que pasa cuando mueren las piezas
-            if(piezaAMover.equipo == 0)
+            if(piezaEnCasilla.equipo == 0)
             {
+                if(piezaEnCasilla.tipo == tipoPieza.reinaAzul)
+                {
+                    CambiarEscenaRosa();
+                }
+                rosasMuertos.Add(piezaEnCasilla);
+                piezaEnCasilla.setEscala(Vector3.one * tamanioCasilla);
+                piezaEnCasilla.setPosition(new Vector3(80 * tamanioCasilla, yOffset, -80 * tamanioCasilla) - bounds + new Vector3(tamanioCasilla / 2, 0, tamanioCasilla / 2) + (Vector3.forward * espacioMuertas) * rosasMuertos.Count);
 
             }
             else
             {
-
+                if (piezaEnCasilla.tipo == tipoPieza.reinaRosa)
+                {
+                    CambiarEscenaAzul();
+                }
+                azulesMuertos.Add(piezaEnCasilla);
+                piezaEnCasilla.setEscala(Vector3.one * tamanioCasilla);
+                piezaEnCasilla.setPosition(new Vector3(-80 * tamanioCasilla, yOffset, 80 * tamanioCasilla) - bounds + new Vector3(tamanioCasilla / 2, 0, tamanioCasilla / 2) + (Vector3.back * espacioMuertas) * rosasMuertos.Count);
             }
+           
         }
 
 
@@ -384,22 +404,34 @@ public class Tablero : MonoBehaviour
 
 
 
-        piezasEnTablero[0, 0] = SpwanearUnaSolaPieza(tipoPieza.torreRosa, equipoRosa );
-        piezasEnTablero[0, 11] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa );
-        piezasEnTablero[0, 3] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa);
-        piezasEnTablero[0, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa );
-        piezasEnTablero[0, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa );
-        piezasEnTablero[0, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa);
-        piezasEnTablero[0, 6] = SpwanearUnaSolaPieza(tipoPieza.reinaRosa, equipoRosa);
-        piezasEnTablero[1, 6] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[0, 5] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[0, 6] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa);
+        piezasEnTablero[0, 8] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[0, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilRosa, equipoRosa);
+        piezasEnTablero[2, 1] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[2, 10] = SpwanearUnaSolaPieza(tipoPieza.reinaRosa, equipoRosa);
+        piezasEnTablero[2, 6] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[3, 3] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[3, 5] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[3, 6] = SpwanearUnaSolaPieza(tipoPieza.caballeroRosa, equipoRosa);
+        piezasEnTablero[3, 7] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[3, 9] = SpwanearUnaSolaPieza(tipoPieza.peonRosa, equipoRosa);
+        piezasEnTablero[4, 0] = SpwanearUnaSolaPieza(tipoPieza.torreRosa, equipoRosa);
+        piezasEnTablero[4, 11] = SpwanearUnaSolaPieza(tipoPieza.torreRosa, equipoRosa);
+
+        piezasEnTablero[11, 11] = SpwanearUnaSolaPieza(tipoPieza.reinaAzul, equipoAzul);
+        piezasEnTablero[11, 6] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
+        piezasEnTablero[10, 1] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
+        piezasEnTablero[10, 2] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
+        piezasEnTablero[10, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
         piezasEnTablero[10, 6] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
-        piezasEnTablero[11, 11] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
-        piezasEnTablero[11, 0] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
-        piezasEnTablero[11, 3] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
-        piezasEnTablero[11, 9] = SpwanearUnaSolaPieza(tipoPieza.alfilAzul, equipoAzul);
-        piezasEnTablero[11, 5] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
-        piezasEnTablero[11, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
-        piezasEnTablero[11, 6] = SpwanearUnaSolaPieza(tipoPieza.reinaAzul, equipoAzul);
+        piezasEnTablero[10, 7] = SpwanearUnaSolaPieza(tipoPieza.caballeroAzul, equipoAzul);
+        piezasEnTablero[9, 1] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
+        piezasEnTablero[9, 11] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
+        piezasEnTablero[8, 2] = SpwanearUnaSolaPieza(tipoPieza.torreAzul, equipoAzul);
+        piezasEnTablero[8, 5] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
+        piezasEnTablero[8, 7] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
+        piezasEnTablero[8, 10] = SpwanearUnaSolaPieza(tipoPieza.peonAzul, equipoAzul);
 
     }
     private Pieza SpwanearUnaSolaPieza(tipoPieza tipo, int equipo)
@@ -458,6 +490,15 @@ public class Tablero : MonoBehaviour
         }
         return false;
 
+    }
+
+    private void CambiarEscenaRosa()
+    {
+        SceneManager.LoadScene(4);
+    }
+    private void CambiarEscenaAzul()
+    {
+        SceneManager.LoadScene(3);
     }
 }
 
