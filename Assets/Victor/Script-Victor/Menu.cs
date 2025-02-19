@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.ShaderData;
+//using static UnityEditor.ShaderData;
 
 public class Menu : MonoBehaviour
 {
@@ -28,9 +28,6 @@ public class Menu : MonoBehaviour
                 menuPausa.SetActive(true);
 
                 Time.timeScale = 0f;
-
-            
-
             }
         }
     }
@@ -41,19 +38,18 @@ public class Menu : MonoBehaviour
         menuPausa.SetActive(false);
         pausa = false;
 
-        Time.timeScale = 1;
-
-       
+        Time.timeScale = 1;     
     }
+
     public void Empezar()
     {
-        new WaitForSecondsRealtime(3);
-        SceneManager.LoadScene(2);
+        new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene(1);
     }
     public void Configuracion()
     {
-        new WaitForSecondsRealtime(3);
-        SceneManager.LoadScene(1);
+        new WaitForSecondsRealtime(2);
+        SceneManager.LoadScene(2);
     }
     public void Salir()
     {
